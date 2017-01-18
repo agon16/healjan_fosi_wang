@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>My App</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/my-app.css">
+    <script>
+      // function open_popup(){
+      //    document.getElementById("head_legende").classList;
+      //    if (myButtonClasses.contains("")) {
+      //     myButtonClasses.add("open");
+      //    }else{
+      //      myButtonClasses.remove("open");
+      //    }
+
+      // }
+      function open_popup() {
+      document.getElementById("head_legende").classList.toggle("open");
+      document.getElementById("head_legende").classList.toggle("test");
+        }
+    </script>
+  </head>
+  <body>
+    <!-- Views-->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+      <div class="view view-main">
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+          <!-- Page, data-page contains page name-->
+          <div data-page="index" class="page">
+            <!-- Scrollable page content-->
+            <div class="page-content map_div">
+              <a href=""><img src="img/app_img/settings.png" class="settings_icoon"></a>
+              <a href=""><img src="img/app_img/diëtist.png" class="dommy_icoon open-popover"></a>
+              
+              <div id="head_legende" class="test">
+                  <head>
+                    <h1 class="header m-l-30">Legende</h1>
+                    <a id="float_button" href="#" class="float active_button" onclick="open_popup()" >
+                      <i class="fa fa-plus my-float"></i>
+                    </a>
+                  </head>
+                  <div class="m-l-30 m-t-20">
+                    <a>
+                      <img src="img/app_img/eye.png" class="icoon_legende  m-r-30 m-b-20 ">
+                      <span>Oogspecialist</span>
+                    </a><br>
+                    <a>
+                      <img src="img/app_img/heart-pulse.png" class="icoon_legende  m-r-30 m-b-20">
+                      <span>Hart chirurgspan</span>
+                    </a><br>
+                    <a>
+                      <img src="img/app_img/diëtist.png" class="icoon_legende  m-r-30 m-b-20">
+                      <span>Diëtist</span>
+                    </a><br>
+                    <a>
+                      <img src="img/app_img/emoticon-sad.png" class="icoon_legende  m-r-30 m-b-20">
+                      <span>Psycholoogspan</span>
+                    </a><br>
+                    <a>
+                      <img src="img/app_img/pill.png" class="icoon_legende  m-r-30 m-b-20">
+                      <span>Apotheekspan</span>
+                    </a>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    <div class="popover popover-about">
+      <div class="popover-angle"></div>
+      <div class="popover-inner">
+        <div class="content-block">
+          <p>About</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales scelerisque est, at porta justo cursus ac.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/my-app.js"></script>
+
+  </body>
+</html>
