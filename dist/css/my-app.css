@@ -25,6 +25,12 @@
 .licht_blauw_tx{
 	color: #3498db;
 }
+.bg_wit{
+	background-color: #fff;
+}
+.wit{
+	color: #fff;
+}
 .map_div{
 	background: url("../img/app_img/map_1.jpg") no-repeat center center fixed; 
 	-webkit-background-size: cover;
@@ -108,9 +114,8 @@ body{
 	-webkit-border-radius:1100%;
 	-moz-border-radius:100%;
 	-o-border-radius:100%;
-	border-radius:100%;
-	background-color: #fff;
-	box-shadow: 0 1px 10px rgba(0, 0, 0, 1);
+	border-radius:100%;/*
+	background-color: #fff;*/
 	vertical-align:top;
 	width: 30px;
     height: 30px;
@@ -119,11 +124,14 @@ body{
 	position: absolute;
 	top: 10px;
 	left: 30px;
+}
+.settings_icoon_bg{
 	-webkit-border-radius:1100%;
 	-moz-border-radius:100%;
 	-o-border-radius:100%;
 	border-radius:100%;
 	background-color: #fff;
+	opacity: 0.2;
 	box-shadow: 0 1px 10px rgba(0, 0, 0, 1);
 }
 /*dommy knop gemaakt*/
@@ -139,4 +147,28 @@ body{
 	box-shadow: 0 1px 10px rgba(0, 0, 0, 1);
 	height: 60px;
 	width: auto;
+}
+
+/*detail pagina style*/
+.nav_style{
+	background-color: #009788;
+}
+.detail_img{
+	position: absolute;
+}
+.detail_info{
+	position: absolute;
+	bottom: 20px;
+}
+.detail_pagina_img{
+	height: 300px;
+}
+.non_bg{
+	background-color: none !important;
+}
+.knop{
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+	margin: 10px;
 }
