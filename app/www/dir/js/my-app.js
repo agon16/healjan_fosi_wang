@@ -27,8 +27,7 @@ myApp.onPageInit('home', function (page) {
 myApp.onPageAfterAnimation('home', function (page) {
   console.log('home after animation');
 
-  $$('.floating-button').on('click', function(){
-    $$(this).toggleClass('open');
-    $$('.legende').toggleClass('open');
+  $$('.floating-button, .overlay').on('click', function(){
+    $$('.page-content').toggleClass('legende-open');
   })
 });
