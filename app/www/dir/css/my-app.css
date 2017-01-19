@@ -1,0 +1,141 @@
+/*HELPER CLASSES*/
+body{
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:18px;
+	background-color:#CCC;
+}
+.m-l-10{
+	margin-left: 10px !important;
+}
+.m-l-30{
+	margin-left: 30px !important;
+}
+.m-t-10{
+	margin-top: 10px !important;
+}
+.m-t-20{
+	margin-top: 20px !important;
+}
+.m-r-10{
+	margin-right: 10px !important;
+}
+.m-r-30{
+	margin-right: 30px !important;
+}
+.m-b-20{
+	margin-bottom: 20px !important;
+}
+
+/*CUSTOM CLASSES*/
+.map_div{
+	background: url("../img/map.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+  	background-size: cover;
+}
+.legende{
+	position: fixed;
+	height: 400px;
+	bottom: -350px;
+	background-color: #ecf0f1;
+	width: 100%;
+	transition: .4s;
+	-webkit-transition: .4s;
+}
+.legende.open{
+	bottom: 0px;
+}
+.legende .floating-button{
+	position: absolute;
+    top: -28px;
+}
+.legende .floating-button i{
+	transition: .4s;
+	-webkit-transition: .4s;
+}
+.legende .floating-button.open i{
+	-webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.legende .content-block{
+	margin-top: 0;
+}
+.legende h1{
+	font-size: 1em;
+}
+.specialist-detail{
+	width: 100%;
+	height: 300px;
+	overflow: hidden;
+}
+.specialist-detail img{
+	height: 100%;
+	width: auto;
+}
+
+
+.info_legende{
+	position: relative;
+	float: right;
+}
+.icoon{
+	margin-top: 50px;
+}
+.icoon_legende{
+	-webkit-border-radius:1100%;
+	-moz-border-radius:100%;
+	-o-border-radius:100%;
+	border-radius:100%;/*
+	background-color: #fff;*/
+	vertical-align:top;
+	width: 30px;
+    height: 30px;
+}
+.settings_icoon{
+	position: absolute;
+	top: 10px;
+	left: 30px;
+}
+.settings_icoon_bg{
+	-webkit-border-radius:1100%;
+	-moz-border-radius:100%;
+	-o-border-radius:100%;
+	border-radius:100%;
+	background-color: #fff;
+	opacity: 0.2;
+	box-shadow: 0 1px 10px rgba(0, 0, 0, 1);
+}
+/*dommy knop gemaakt*/
+.dommy_icoon{
+	position: relative;
+	top: 100px;
+	left: 100px;
+	-webkit-border-radius:1100%;
+	-moz-border-radius:100%;
+	-o-border-radius:100%;
+	border-radius:100%;
+	background-color: #fff;
+	box-shadow: 0 1px 10px rgba(0, 0, 0, 1);
+	height: 60px;
+	width: auto;
+}
+
+/*detail pagina style*/
+.detail_info{
+	position: absolute;
+	bottom: 20px;
+}
+
+.non_bg{
+	background-color: none !important;
+}
+.knop{
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+	margin: 10px;
+}
