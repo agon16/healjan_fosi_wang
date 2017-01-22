@@ -14,7 +14,7 @@ var mainView = myApp.addView('.view-main');
 //go to page on start
 myApp.onPageInit('index', function (page) {
   console.log('index initialized');
-  mainView.router.loadPage('views/home.html'); 
+  mainView.router.loadPage('views/ziek1.html'); 
 }).trigger();
 
 // onPageInit
