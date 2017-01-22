@@ -14,7 +14,7 @@ var mainView = myApp.addView('.view-main');
 //go to page on start
 myApp.onPageInit('index', function (page) {
   console.log('index initialized');
-  mainView.router.loadPage('views/account.html'); 
+  mainView.router.loadPage('views/home.html'); 
 }).trigger();
 
 // onPageInit
@@ -27,9 +27,8 @@ myApp.onPageInit('home', function (page) {
 myApp.onPageAfterAnimation('home', function (page) {
   console.log('home after animation');
 
-  $$('.floating-button').on('click', function(){
-    $$(this).toggleClass('open');
-    $$('.legende').toggleClass('open');
+  $$('.floating-button, .overlay').on('click', function(){
+    $$('.page-content').toggleClass('legende-open');
   })
 });
 

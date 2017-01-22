@@ -1,7 +1,6 @@
 /*HELPER CLASSES*/
 body{
 	font-family:Verdana, Geneva, sans-serif;
-	font-size:18px;
 	background-color:#CCC;
 }
 .m-l-10{
@@ -25,11 +24,16 @@ body{
 .m-b-20{
 	margin-bottom: 20px !important;
 }
+<<<<<<< HEAD
 .midde{
 	text-align: center !important;
 }
 .text_rood{
 	color: red !important;
+}
+
+.bg-blue-gray-100{
+	background-color: #CFD8DC;
 }
 
 /*CUSTOM CLASSES*/
@@ -40,27 +44,43 @@ body{
 	-o-background-size: cover;
   	background-size: cover;
 }
+.overlay{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: .4;
+	z-index: 2;
+	display: none;
+	transition: .8s ease-in-out;
+	-webkit-transition: .8s ease-in-out;
+}
+.page-content.legende-open .overlay{
+	display: block;
+}
 .legende{
 	position: fixed;
 	height: 400px;
 	bottom: -350px;
-	background-color: #ecf0f1;
 	width: 100%;
-	transition: .4s;
-	-webkit-transition: .4s;
+	transition: .4s ease-in-out;
+	-webkit-transition: .4s ease-in-out;
+	z-index: 3;
 }
-.legende.open{
+.page-content.legende-open .legende{
 	bottom: 0px;
 }
 .legende .floating-button{
 	position: absolute;
     top: -28px;
+    box-shadow: none;
 }
 .legende .floating-button i{
-	transition: .4s;
-	-webkit-transition: .4s;
+	font-size: 1.4em;
+	transition: .4s ease-in-out;
+	-webkit-transition: .4s ease-in-out;
 }
-.legende .floating-button.open i{
+.page-content.legende-open .legende .floating-button i{
 	-webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
@@ -72,19 +92,66 @@ body{
 }
 .legende h1{
 	font-size: 1em;
+	margin: 14px 0;
+}
+.legend-content{
+	padding-top: 5px;
+}
+.legend-content i{
+	font-size: 2em;
+	vertical-align: middle;
+	padding: 0 20px 0 10px;
+}
+.map-icon{
+	position: fixed;
+	text-align: center;
+	line-height: 56px;
+	width: 56px;
+	height: 56px;
+	border-radius: 56px;
+	font-size: 2.6em;
+	background-color: rgba(255,255,255,1);
+}
+.map-icon.settings{
+	top: 10px;
+	left: 10px;
+	font-size: 2em;
+	background-color: rgba(255,255,255,.8);
+}
+.map-icon.eye-specialist{
+	top: 35%;
+	left: 40%;
 }
 .specialist-detail{
 	width: 100%;
-	height: 300px;
+	height: 200px;
 	overflow: hidden;
 	background-color: black;
 }
 .specialist-detail img{
-	height: 100%;
-	width: auto;
+	height: auto;
+	width: 100%;
 }
-
-
+.detail-icon{
+	font-size: 1.3em;
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+.detail-icon i{
+	font-size: 1.8em;
+	vertical-align: middle;
+	padding: 0 2%;
+	border-radius: 50%;
+	margin: 0 20px 0 10px;
+}
+.detail-info-icon i{
+	font-size: 1.8em;
+	vertical-align: middle;
+	margin: 0 20px;
+}
+.content-block .detail-info-icon:nth-child(4) i{
+	margin: 0 25px;
+}
 .info_legende{
 	position: relative;
 	float: right;
