@@ -24,18 +24,23 @@ body{
 .m-b-20{
 	margin-bottom: 20px !important;
 }
-<<<<<<< HEAD
-.midde{
+.text-center{
 	text-align: center !important;
 }
-.text_rood{
-	color: red !important;
-}
-
 .bg-blue-gray-100{
 	background-color: #CFD8DC;
 }
-
+.white-overlay{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	z-index: 999;
+}
+.a-link{
+	margin: 10% 0 10px 0;
+	text-decoration: underline;
+}
 /*CUSTOM CLASSES*/
 .map_div{
 	background: url("../img/map.jpg") no-repeat center center fixed; 

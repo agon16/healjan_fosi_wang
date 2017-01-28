@@ -14,7 +14,7 @@ var mainView = myApp.addView('.view-main');
 //go to page on start
 myApp.onPageInit('index', function (page) {
   console.log('index initialized');
-  mainView.router.loadPage('views/ziek1.html'); 
+  mainView.router.loadPage('views/home.html'); 
 }).trigger();
 
 // onPageInit
@@ -32,4 +32,17 @@ myApp.onPageAfterAnimation('home', function (page) {
   })
 });
 
-// calender
+
+
+myApp.onPageAfterAnimation('account', function (page) {
+  console.log('account before animation');
+
+  if (localStorage.getItem('htd-user-id') != null) {
+  	console.log('exists');
+  	$$('.white-overlay').hide();
+  }else{
+  	console.log('go to login');
+  	mainView.router.loadPage('views/login.html'); 
+  }
+});
+
