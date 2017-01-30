@@ -14,14 +14,14 @@
     </div>
     <div class="page-content">
 
-      <div class="list-block">
+      <form id="login-form" class="list-block">
         <ul>
           <!-- Text inputs -->
           <li>
             <div class="item-content">
               <div class="item-inner">
                 <div class="item-input">
-                  <input type="number" placeholder="Mobiel">
+                  <input type="number" name="phone" placeholder="Mobiel" required="">
                 </div>
               </div>
             </div>
@@ -30,17 +30,21 @@
             <div class="item-content">
               <div class="item-inner">
                 <div class="item-input">
-                  <input type="password" placeholder="Wachtwoord">
+                  <input type="password" name="password" placeholder="Wachtwoord" required="">
                 </div>
               </div>
             </div>
           </li>
         </ul>
-      </div>
-      <div class="content-block">
-        <p><a href="#" class="button active bg-teal color-white">Log in</a></p>
-        <p class="text-center">Geen account? <a href="views/aanmelden.html" class="a-link">Aanmelden</a></p>
-      </div>
+
+        <div class="content-block">
+          <p><input type="submit" value="Log In" class="button bg-teal color-white"></p>
+          <p class="text-center">Geen account? <a href="views/aanmelden.html" class="a-link">Aanmelden</a></p>
+        </div>
+
+      </form>
+
+      
       
     </div>
 

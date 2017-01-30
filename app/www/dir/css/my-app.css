@@ -30,6 +30,9 @@ body{
 .bg-blue-gray-100{
 	background-color: #CFD8DC;
 }
+.color-red{
+	color: #f44336 !important;
+}
 .white-overlay{
 	position: absolute;
 	width: 100%;
@@ -40,6 +43,11 @@ body{
 .a-link{
 	margin: 10% 0 10px 0;
 	text-decoration: underline;
+}
+.error{
+  font-size: .8em;
+  text-align: center;
+  margin-top: 0;
 }
 /*CUSTOM CLASSES*/
 .map_div{

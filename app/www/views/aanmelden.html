@@ -1,5 +1,5 @@
 <div class="pages">
-  <div data-page="aamelden" class="page navbar-fixed theme-teal">
+  <div data-page="aanmelden" class="page navbar-fixed theme-teal">
 
     <div class="navbar">
       <div class="navbar-inner">
@@ -18,14 +18,14 @@
     </div>
     <div class="page-content">
 
-      <div class="list-block">
+      <form id="aanmelden-form" class="list-block">
         <ul>
           <!-- Text inputs -->
           <li>
             <div class="item-content">
               <div class="item-inner">
                 <div class="item-input">
-                  <input type="text" placeholder="Voornaam">
+                  <input type="text" name="first_name" class="name" placeholder="Voornaam" required="">
                 </div>
               </div>
             </div>
@@ -34,7 +34,7 @@
             <div class="item-content">
               <div class="item-inner">
                 <div class="item-input">
-                  <input type="text" placeholder="Achternaam">
+                  <input type="text" name="last_name" class="name" placeholder="Achternaam" required="">
                 </div>
               </div>
             </div>
@@ -44,9 +44,10 @@
             <div class="item-content">
               <div class="item-inner">
                 <div class="item-input">
-                  <select>
-                    <option>Man</option>
-                    <option>Vrouw</option>
+                  <select name="gender" required="">
+                    <option value="">Kies uw gender</option>
+                    <option value="man">Man</option>
+                    <option value="vrouw">Vrouw</option>
                   </select>
                 </div>
               </div>
@@ -56,7 +57,7 @@
             <div class="item-content">
               <div class="item-inner">
                 <div class="item-input">
-                  <input type="number" placeholder="Mobiel">
+                  <input type="number" name="phone" placeholder="Mobiel" required="">
                 </div>
               </div>
             </div>
@@ -65,25 +66,33 @@
             <div class="item-content">
               <div class="item-inner">
                 <div class="item-input">
-                  <input type="password" placeholder="Wachtwoord">
+                  <input type="password" id="password" name="password" placeholder="Wachtwoord" required="">
                 </div>
               </div>
             </div>
           </li>
+          <p id="password_error" class="color-red error">wachtwoord te kort</p>
+
           <li>
             <div class="item-content">
               <div class="item-inner">
                 <div class="item-input">
-                  <input type="password" placeholder="Bevestig wachtwoord">
+                  <input type="password" id="password_conf" placeholder="Bevestig wachtwoord" required="">
                 </div>
               </div>
             </div>
           </li>
+          <p id="password_conf_error" class="color-red error">wachtwoorden niet hetzelfde</p>
+
         </ul>
-      </div>
-      <div class="content-block">
-        <p><a href="#" class="button active bg-teal color-white">Aanmelden</a></p>
-      </div>
+
+        <div class="content-block">
+          <p><input type="submit" value="Aanmelden" class="button bg-teal color-white disabled"></p>
+          <p id="aanmelden_error" class="color-red error">error</p>
+        </div>
+      </form>
+
+      
       <div class="content-block">
         <p class="text-center">Door aan te melden gaat u akkoord met de volgende <a class="color-red a-link" href="#">voorwaarden</a></p>
       </div>
