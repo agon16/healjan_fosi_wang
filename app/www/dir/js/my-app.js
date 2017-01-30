@@ -14,7 +14,7 @@ var mainView = myApp.addView('.view-main');
 //go to page on start
 myApp.onPageInit('index', function (page) {
   console.log('index initialized');
-  mainView.router.loadPage('views/ziek1.html'); 
+  mainView.router.loadPage('views/home.html'); 
 }).trigger();
 
 // onPageInit
@@ -31,5 +31,10 @@ myApp.onPageAfterAnimation('home', function (page) {
     $$('.page-content').toggleClass('legende-open');
   })
 });
-
+var myApp = new Framework7(); 
+ 
+  // Init slider and store its instance in mySwiper variable
+  var mySwiper = myApp.swiper('.swiper-container', {
+    pagination:'.swiper-pagination'
+  });
 // calender
