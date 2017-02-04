@@ -104,8 +104,17 @@ myApp.onPageInit('login', function (page) {
     e.preventDefault();
 
     var formData = myApp.formToJSON('#login-form');
-    // console.log(JSON.stringify(formData));
-  
+
+    $$.getJSON("http://gocodeops.com/healthy_do/api/api.php/user?filter[]=phone,eq,"+ formData.phone +"&filter[]=password,eq," + formData.password + '&transform=true"', function(data){
+      console.log(data);
+
+      if (data['user'].length != 0) {
+        localStorage.setItem('healthy_userid', data);
+        mainView.router.loadPage('views/account.html'); 
+      } else {
+        myApp.alert("Mobielnummer of password incorrect!");
+      }
+    });
   });
 });
 
@@ -156,9 +165,18 @@ myApp.onPageInit('aanmelden', function (page) {
     e.preventDefault();
 
     var formData = myApp.formToJSON('#aanmelden-form');
-    console.log(JSON.stringify(formData));
 
-
+    $$.ajax({
+      type: "POST",
+      url: "http://gocodeops.com/healthy_do/api/api.php/user",
+      dataType: "application/json",
+      contentType: "application/x-www-form-urlencoded; charset=utf-8",
+      data: JSON.stringify(formData),
+      success: function(data){
+        // make a localstorage
+        localStorage.setItem('healthy_userid', data);
+        mainView.router.loadPage('views/account.html'); 
+      }
+    });
   });
 });
-
