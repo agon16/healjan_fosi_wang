@@ -89,49 +89,74 @@ body{
 .page-content.legende-open .overlay{
 	display: block;
 }
+.page-content.legende-open .legende{
+	bottom: 0;
+	overflow-y: scroll;
+}
 .legende{
 	position: fixed;
-	height: 400px;
 	bottom: -350px;
+	height: 400px;
 	width: 100%;
 	transition: .4s ease-in-out;
 	-webkit-transition: .4s ease-in-out;
 	z-index: 3;
 }
-.page-content.legende-open .legende{
-	bottom: 0px;
-}
-.legende .floating-button{
-	position: absolute;
-    top: -28px;
-    box-shadow: none;
-}
-.legende .floating-button i{
-	font-size: 1.4em;
-	transition: .4s ease-in-out;
-	-webkit-transition: .4s ease-in-out;
-}
-.page-content.legende-open .legende .floating-button i{
-	-webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-.legende .content-block{
-	margin-top: 0;
-}
 .legende h1{
-	font-size: 1em;
-	margin: 14px 0;
+	margin: 0;
 }
-.legend-content{
-	padding-top: 5px;
+.legende .head{
+	height: 50px;
+	width: 100%;
+	max-width: 100%;
+	overflow: hidden;
+	line-height: 50px;
+	color: #9E9E9E;
 }
-.legend-content i{
+.legende .head .left, .legende .head .right{
+	position: absolute;
+	line-height: 50px;
+	height: 100%;
+}
+.legende .head .left{
+	width: 50%;
+	left: 0;
+	text-align: left;
+	padding-left: 4%;
+}
+.legende .head .right{
+	width: 20%;
+	max-width: 50px;
+	right: 0;
+	text-align: center;
+	color: #424242;
 	font-size: 2em;
-	vertical-align: middle;
-	padding: 0 20px 0 10px;
+}
+.legende .head .left p{
+	margin: 0;
+}
+.legende .content-block, .legende .media-list{
+	margin: 0;
+}
+.legend-content p{
+	font-size: 1em;
+	margin: 0;
+}
+.legend-content .legende-item{
+	height: 30px;
+	line-height: 30px;
+	margin: 1.2% 0;
+}
+.legend-content .legende-item .links{
+	width: 20%;
+	float: left;
+	text-align: center;
+	font-size: 2em;
+}
+.legend-content .legende-item .rechts{
+	width: 80%;
+	float: left;
+	height: 100%;
 }
 .map-icon{
 	position: fixed;
@@ -150,10 +175,10 @@ body{
 	background-color: rgba(255,255,255,.8);
 } 
 .map-icon.settings{
-	bottom: 10%;
+	bottom: 12%;
 }
 .map-icon.symptoms{
-	bottom: 20%;
+	bottom: 25%;
 }
 .specialist-detail{
 	width: 100%;
@@ -248,9 +273,13 @@ body{
 /*@media queries*/
 @media screen and (orientation: landscape) {
    .map-icon.settings{
-	bottom: 15%;
+		bottom: 18%;
 	}
 	.map-icon.symptoms{
-		bottom: 33%;
+		bottom: 37%;
+	}
+	.legende{
+		bottom: -250px;
+		height: 300px;
 	}
 }

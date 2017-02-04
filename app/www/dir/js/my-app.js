@@ -78,7 +78,7 @@ L.marker([5.7481,-55.0988]).addTo(map)
 myApp.onPageAfterAnimation('home', function (page) {
   console.log('home after animation');
 
-  $$('.floating-button, .overlay').on('click', function(){
+  $$('.head .right, .overlay').on('click', function(){
     $$('.page-content').toggleClass('legende-open');
   })
 });
@@ -132,7 +132,6 @@ myApp.onPageInit('aanmelden', function (page) {
   // password longer than 6 chars
   pass.on('keyup change', function(){
     if (pass.val().length < 6) {
-      console.log(pass.val().length);
       $$('#password_error').show();
       sub.addClass('disabled');
     }else{
@@ -158,6 +157,23 @@ myApp.onPageInit('aanmelden', function (page) {
     var formData = myApp.formToJSON('#aanmelden-form');
     console.log(JSON.stringify(formData));
 
+    $$.ajax({
+      type: "POST",
+      url: "http://testtmil.sr/healthy_do/api/api.php/user",
+      dataType: "application/json",
+      contentType: "'application/x-www-form-urlencoded'; charset=utf-8",
+      data: {
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        gender: formData.gender,
+        phone: formData.phone,
+        password: formData.password,
+        status: 'active'
+      },
+      success: function(data){
+        console.log(data);
+      }
+    });
 
   });
 });
