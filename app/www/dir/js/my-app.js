@@ -14,7 +14,7 @@ var mainView = myApp.addView('.view-main');
 //go to page on start
 myApp.onPageInit('index', function (page) {
   console.log('index initialized');
-  mainView.router.loadPage('views/home.html'); 
+  mainView.router.loadPage('views/account.html'); 
 }).trigger();
 
 
@@ -88,13 +88,80 @@ myApp.onPageAfterAnimation('home', function (page) {
 myApp.onPageAfterAnimation('account', function (page) {
   console.log('account before animation');
 
-  if (localStorage.getItem('htd-user-id') != null) {
+  // hiden van beveiliging sectie
+  $$('#beveiliging').hide();
+
+  var beveiliging_sectie = false;
+
+  //hide beveiliging sectie
+  $$('input[type=checkbox]').on('change', function(){
+    // console.log($$(this).prop('checked'));
+    if ($$(this).prop('checked') == true) {
+       $$('#beveiliging').show();
+      beveiliging_sectie = true; 
+    }else if($$(this).prop('checked') == false){
+      $$('#beveiliging').hide();
+      beveiliging_sectie = false;
+    }
+  })
+
+  if (localStorage.getItem('healthy_userid') != null) {
   	console.log('exists');
-  	$$('.white-overlay').hide();
+    $('.white-overlay, ').hide();
   }else{
   	console.log('go to login');
   	mainView.router.loadPage('views/login.html'); 
   }
+
+  // agon
+  function getAccount(){
+    $$.getJSON("http://gocodeops.com/healthy_do/api/api.php/user?transform=true&filter=id,eq,1", function(data){
+    console.log(data['user']);
+    $$.each(data['user'], function(i, value){
+      $$("#voornaam").val(value.first_name);
+      $$("#achternaam").val(value.last_name);
+      $$("#gender").val(value.gender);
+      $$("#telefoon").val(value.phone);
+    });
+  });
+  }
+
+  getAccount();
+
+  $$('#form-account').submit(function(e){
+    e.preventDefault();
+
+    var formData = myApp.formToJSON('#form-account'),
+        data = {};
+
+    if (beveiliging_sectie) {
+      console.log("het is er");
+      data = formData;
+    }else{
+      console.log("het is er niet");
+      data = {
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        gender: formData.gender,
+        phone: formData.phone
+      }
+    }
+
+    console.log(data);
+
+    $$.ajax({
+      type: "PUT",
+      url: "http://gocodeops.com/healthy_do/api/api.php/user/1",
+      dataType: "application/JSON", 
+      contentType: "application/x-www-form-urlencoded; charset=utf-8",
+      data: JSON.stringify(data),
+      success: function(data){
+      // myApp.alert("success: id:" + data);
+      console.log("success");
+      getAccount();
+      }
+    })
+  })
 });
 
 myApp.onPageInit('login', function (page) {
@@ -104,8 +171,17 @@ myApp.onPageInit('login', function (page) {
     e.preventDefault();
 
     var formData = myApp.formToJSON('#login-form');
-    // console.log(JSON.stringify(formData));
-  
+
+    $$.getJSON("http://gocodeops.com/healthy_do/api/api.php/user?filter[]=phone,eq,"+ formData.phone +"&filter[]=password,eq," + formData.password + '&transform=true"', function(data){
+      console.log(data);
+
+      if (data['user'].length != 0) {
+        localStorage.setItem('healthy_userid', data);
+        mainView.router.loadPage('views/account.html'); 
+      } else {
+        myApp.alert("Mobielnummer of password incorrect!");
+      }
+    });
   });
 });
 
@@ -159,22 +235,15 @@ myApp.onPageInit('aanmelden', function (page) {
 
     $$.ajax({
       type: "POST",
-      url: "http://testtmil.sr/healthy_do/api/api.php/user",
+      url: "http://gocodeops.com/healthy_do/api/api.php/user",
       dataType: "application/json",
-      contentType: "'application/x-www-form-urlencoded'; charset=utf-8",
-      data: {
-        first_name: formData.first_name,
-        last_name: formData.last_name,
-        gender: formData.gender,
-        phone: formData.phone,
-        password: formData.password,
-        status: 'active'
-      },
+      contentType: "application/x-www-form-urlencoded; charset=utf-8",
+      data: JSON.stringify(formData),
       success: function(data){
-        console.log(data);
+        // make a localstorage
+        localStorage.setItem('healthy_userid', data);
+        mainView.router.loadPage('views/account.html'); 
       }
     });
-
   });
 });
-

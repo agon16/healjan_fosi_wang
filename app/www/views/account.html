@@ -15,87 +15,92 @@
         </div>
       </div>
     </div>
-
+    
     <div class="page-content">
-      <div class="list-block">
-        <ul>
-          <!-- Text inputs -->
-          <li>
-            <div class="item-content">
-              <div class="item-inner">
-                <div class="item-input">
-                  <input type="text" placeholder="Voornaam">
+      <form id="form-account">
+        <div class="list-block">
+          <ul>
+            <!-- Text inputs -->
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-input">
+                    <input type="text" id="voornaam" name="first_name" placeholder="Voornaam">
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-          <li>
-            <div class="item-content">
-              <div class="item-inner">
-                <div class="item-input">
-                  <input type="text" placeholder="Achternaam">
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-input">
+                    <input type="text" id="achternaam" name="last_name" placeholder="Achternaam">
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-          <li>
-          <li>
-            <div class="item-content">
-              <div class="item-inner">
-                <div class="item-input">
-                  <select>
-                    <option>Man</option>
-                    <option>Vrouw</option>
-                  </select>
+            </li>
+            <li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-input">
+                    <select id="gender" name="gender">
+                      <option value="m">Man</option>
+                      <option value="v">Vrouw</option>
+                    </select>
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-          <li>
-            <div class="item-content">
-              <div class="item-inner">
-                <div class="item-input">
-                  <input type="number" placeholder="Mobiel">
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-input">
+                    <input type="number" id="telefoon" name="phone" placeholder="Mobiel">
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-          <li>
-            <div class="item-content">
-              <div class="item-inner">
-                <div class="item-input">
-                  <label class="label-switch">
-                    <input type="checkbox">
-                    <div class="checkbox"></div>
-                  </label>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Verander wachtwoord</div>
+                  <div class="item-input">
+                    <label class="label-switch">
+                      <input type="checkbox">
+                      <div class="checkbox"></div>
+                    </label>
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-          <li>
-            <div class="item-content">
-              <div class="item-inner">
-                <div class="item-input">
-                  <input type="password" placeholder="Oud wachtwoord">
+            </li>
+            <div id="beveiliging">
+              <li>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-input">
+                      <input type="password" id="oud_wachtwoord" name="password" placeholder="Oud wachtwoord">
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="item-content">
-              <div class="item-inner">
-                <div class="item-input">
-                  <input type="password" placeholder="Nieuw wachtwoord">
+              </li>
+              <li>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-input">
+                      <input type="password" name="conf_password" placeholder="Nieuw wachtwoord">
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </li>
             </div>
-          </li>
-        </ul>
-      </div>
-      <div class="content-block">
-        <p><a href="#" class="button active bg-teal color-white">Wijzig</a></p>
-      </div>
+          </ul>
+        </div>
+        <div class="content-block">
+          <!-- <p><button href="#" type="submit" class="button active bg-teal color-white">Wijzig</button></p> -->
+          <input type="submit" value="Wijzig" class="button active bg-teal color-white" name="submit">
+        </div>
+      </form>
     </div>
-
   </div>
-</div>  
+</div>
