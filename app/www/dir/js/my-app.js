@@ -14,7 +14,7 @@ var mainView = myApp.addView('.view-main');
 //go to page on start
 myApp.onPageInit('index', function (page) {
   console.log('index initialized');
-  mainView.router.loadPage('views/account.html'); 
+  mainView.router.loadPage('views/home.html'); 
 }).trigger();
 
 
@@ -245,5 +245,45 @@ myApp.onPageInit('aanmelden', function (page) {
         mainView.router.loadPage('views/account.html'); 
       }
     });
+  });
+});
+
+myApp.onPageInit('symptomen', function (page) {
+  console.log('symptomen init');
+
+  $$.getJSON("http://gocodeops.com/healthy_do/api/api.php/sickness?transform=true", function(data){
+    console.log(data['sickness']);
+    $$.each(data['sickness'], function(i, value){
+      var symptoom = '<li>'+
+                        '<a href="views/symptoom_detail.html?id='+value.id+'" class="item-link item-content">'+
+                          '<div class="item-inner">'+
+                            '<div class="item-title-row">'+
+                              '<div class="item-title">'+value.name+'</div>'+
+                            '</div>'+
+                          '</div>'+
+                        '</a>'+
+                      '</li>';
+
+      $$('#symptomen').append(symptoom);
+    });
+  });
+
+});
+
+myApp.onPageInit('symptoom_detail', function (page) {
+  console.log('symptoom_detail init');
+
+  // console.log(page.query.id);
+  var symptoom_id = page.query.id;
+
+  $$.getJSON("http://gocodeops.com/healthy_do/api/api.php/sickness/"+symptoom_id, function(data){
+    console.log(data);
+
+    $$('#symptoom_detail_name').text(data.name);
+    $$('#symptoom_detail_img').attr('src', data.picture);
+    $$('#description').html(data.description);
+    $$('#symptoms').html(data.symptoms);
+    $$('#actions').html(data.actions);
+
   });
 });

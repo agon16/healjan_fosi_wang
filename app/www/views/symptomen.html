@@ -1,5 +1,5 @@
 <div class="pages">
-  <div data-page="about" class="page navbar-fixed theme-teal">
+  <div data-page="symptomen" class="page navbar-fixed theme-teal">
 
     <div class="navbar">
       <div class="navbar-inner">
@@ -12,14 +12,17 @@
         <div class="right"></div>
       </div>
     </div>
-    <form class="searchbar">
+
+    <form class="searchbar searchbar-init" data-search-list=".list-block-search" data-search-in=".item-title" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
         <div class="searchbar-input">
             <input type="search" placeholder="Search">
             <a href="#" class="searchbar-clear"></a>
         </div>
         <a href="#" class="searchbar-cancel">Cancel</a>
     </form>
+
     <div class="searchbar-overlay"></div>
+
     <div class="page-content">
     <div class="content-block searchbar-not-found">
       <div class="content-block-inner">Nothing found</div>
@@ -27,8 +30,8 @@
 
       <div class="list-block list-block-search searchbar-found">
         <div class="list-block media-list">
-          <ul>
-            <li>
+          <ul id="symptomen">
+            <!-- <li>
               <a href="#" class="item-link item-content">
                 <div class="item-inner">
                   <div class="item-title-row">
@@ -36,97 +39,7 @@
                   </div>
                 </div>
               </a>
-            </li>
-            <li>
-              <a href="#" class="item-link item-content">
-                <div class="item-inner">
-                  <div class="item-title-row">
-                    <div class="item-title">Ziekte 2</div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="item-link item-content">
-                <div class="item-inner">
-                  <div class="item-title-row">
-                    <div class="item-title">Ziekte 3</div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="item-link item-content">
-                <div class="item-inner">
-                  <div class="item-title-row">
-                    <div class="item-title">Ziekte 4</div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="item-link item-content">
-                <div class="item-inner">
-                  <div class="item-title-row">
-                    <div class="item-title">Ziekte 5</div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="item-link item-content">
-                <div class="item-inner">
-                  <div class="item-title-row">
-                    <div class="item-title">Ziekte 6</div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="item-link item-content">
-                <div class="item-inner">
-                  <div class="item-title-row">
-                    <div class="item-title">Ziekte 7</div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="item-link item-content">
-                <div class="item-inner">
-                  <div class="item-title-row">
-                    <div class="item-title">Ziekte 8</div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="item-link item-content">
-                <div class="item-inner">
-                  <div class="item-title-row">
-                    <div class="item-title">Ziekte 9</div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="item-link item-content">
-                <div class="item-inner">
-                  <div class="item-title-row">
-                    <div class="item-title">Ziekte 10</div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="item-link item-content">
-                <div class="item-inner">
-                  <div class="item-title-row">
-                    <div class="item-title">Ziekte 11</div>
-                  </div>
-                </div>
-              </a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>

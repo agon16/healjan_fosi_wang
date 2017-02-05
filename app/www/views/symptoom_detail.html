@@ -1,35 +1,32 @@
 <div class="pages">
-  <div data-page="about" class="page navbar-fixed theme-teal">
+  <div data-page="symptoom_detail" class="page navbar-fixed theme-teal">
 
     <div class="navbar">
       <div class="navbar-inner">
         <div class="left">
-          <a href="views/home.html" class="link back">
+          <a href="#" class="link back">
             <i class="icon ion-chevron-left"></i>
            </a>
         </div>
-        <div class="center">Ziek1</div>
+        <div class="center" id="symptoom_detail_name"></div>
         <div class="right"></div>
       </div>
     </div>
 
     <div class="page-content">
       <div class="specialist-detail">
-        <img src="dir/img/illnes.jpg" class="img_opacity">
-      </div>
-      <div class="content-block">
-      	<span class="naam color-white">.</span>
+        <img id="symptoom_detail_img" src="" class="img_opacity">
       </div>
 
       <div class="content-block">
-          <div class="list-block accordion-list">
+          <div class="list-block accordion-list sickness">
             <ul>
               <li class="accordion-item"><a href="#" class="item-content item-link">
                   <div class="item-inner">
                     <div class="item-title">Omschrijving</div>
                   </div></a>
                 <div class="accordion-item-content">
-                  <div class="content-block">
+                  <div class="content-block" id="description">
                     <p>Item 1 content. Lorem ipsum dolor sit amet...</p>
                   </div>
                 </div>
@@ -39,7 +36,7 @@
                     <div class="item-title">Symptomen</div>
                   </div></a>
                 <div class="accordion-item-content">
-                  <div class="content-block">
+                  <div class="content-block" id="symptoms">
                     <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
                   </div>
                 </div>
@@ -49,17 +46,7 @@
                     <div class="item-title">Wat u alvast kunt doen</div>
                   </div></a>
                 <div class="accordion-item-content">
-                  <div class="content-block">
-                    <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
-                  </div>
-                </div>
-              </li>
-              <li class="accordion-item"><a href="#" class="item-content item-link">
-                  <div class="item-inner">
-                    <div class="item-title">Bezoek uw huisarts</div>
-                  </div></a>
-                <div class="accordion-item-content">
-                  <div class="content-block">
+                  <div class="content-block" id="actions">
                     <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
                   </div>
                 </div>
