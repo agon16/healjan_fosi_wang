@@ -78,7 +78,7 @@ L.marker([5.7481,-55.0988]).addTo(map)
 myApp.onPageAfterAnimation('home', function (page) {
   console.log('home after animation');
 
-  $$('.floating-button, .overlay').on('click', function(){
+  $$('.head .right, .overlay').on('click', function(){
     $$('.page-content').toggleClass('legende-open');
   })
 });
@@ -88,8 +88,8 @@ myApp.onPageAfterAnimation('home', function (page) {
 myApp.onPageAfterAnimation('account', function (page) {
   console.log('account before animation');
 
-  //overlay hiden en beveiliging sectie
-  $$('.white-overlay, #beveiliging').hide();
+  // hiden van beveiliging sectie
+  $$('#beveiliging').hide();
 
   var beveiliging_sectie = false;
 
@@ -105,14 +105,13 @@ myApp.onPageAfterAnimation('account', function (page) {
     }
   })
 
-  if (localStorage.getItem('htd-user-id') != null) {
+  if (localStorage.getItem('healthy_userid') != null) {
   	console.log('exists');
- 
+    $('.white-overlay, ').hide();
+  }else{
+  	console.log('go to login');
+  	mainView.router.loadPage('views/login.html'); 
   }
-  // else{
-  // 	console.log('go to login');
-  // 	mainView.router.loadPage('views/login.html'); 
-  // }
 
   // agon
   function getAccount(){
@@ -209,7 +208,6 @@ myApp.onPageInit('aanmelden', function (page) {
   // password longer than 6 chars
   pass.on('keyup change', function(){
     if (pass.val().length < 6) {
-      console.log(pass.val().length);
       $$('#password_error').show();
       sub.addClass('disabled');
     }else{
@@ -233,6 +231,7 @@ myApp.onPageInit('aanmelden', function (page) {
     e.preventDefault();
 
     var formData = myApp.formToJSON('#aanmelden-form');
+    console.log(JSON.stringify(formData));
 
     $$.ajax({
       type: "POST",
