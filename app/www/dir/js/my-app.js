@@ -14,7 +14,7 @@ var mainView = myApp.addView('.view-main');
 //go to page on start
 myApp.onPageInit('index', function (page) {
   console.log('index initialized');
-  mainView.router.loadPage('views/account.html'); 
+  mainView.router.loadPage('views/home.html'); 
 }).trigger();
 
 
@@ -245,6 +245,30 @@ myApp.onPageInit('aanmelden', function (page) {
         localStorage.setItem('healthy_userid', data);
         mainView.router.loadPage('views/account.html'); 
       }
+    });
+  });
+});
+
+
+myApp.onPageInit('faq', function (page) {
+  console.log('faq init');
+$$.getJSON("http://gocodeops.com/healthy_do/api/api.php/faq?transform=true", function(data){
+    console.log(data['faq']);
+    $$.each(data['faq'], function(i, value){
+      // console.log(value.first_name); 
+      var faq_item = '<li class="accordion-item">'+
+                        '<a href="#" class="item-content item-link">'+
+                          '<div class="item-inner">'+
+                           '<div class="item-title">'+value.question+'</div>'+
+                          '</div>'+
+                        '</a>'+
+                        '<div class="accordion-item-content">'+
+                          '<div class="content-block">'+
+                            '<p>'+value.answer+'</p>'+
+                          '</div>'+
+                        '</div>'+
+                      '</li>';
+                    $$('#faq').append(faq_item);
     });
   });
 });

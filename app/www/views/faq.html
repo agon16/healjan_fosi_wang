@@ -1,5 +1,5 @@
 <div class="pages">
-  <div data-page="about" class="page navbar-fixed theme-teal">
+  <div data-page="faq" class="page navbar-fixed theme-teal">
 
     <div class="navbar">
       <div class="navbar-inner">
@@ -12,7 +12,7 @@
         <div class="right"></div>
       </div>
     </div>
-    <form class="searchbar">
+    <form class="searchbar searchbar-init" data-search-list=".list-block-search" data-search-in=".item-title" data-found=".searchbar-found" data-not-found=".searchbar-not-found" > 
         <div class="searchbar-input">
             <input type="search" placeholder="Search">
             <a href="#" class="searchbar-clear"></a>
@@ -24,9 +24,9 @@
     <div class="content-block searchbar-not-found">
       <div class="content-block-inner">Nothing found</div>
     </div>
-      <div class="list-block accordion-list">
-        <ul>
-          <li class="accordion-item"><a href="#" class="item-content item-link">
+      <div class="list-block list-block-search searchbar-found accordion-list">
+        <ul id="faq">
+          <!-- <li class="accordion-item"><a href="#" class="item-content item-link">
               <div class="item-inner">
                 <div class="item-title">Vraag 1</div>
               </div></a>
@@ -35,39 +35,7 @@
                 <p>Item 1 content. Lorem ipsum dolor sit amet...</p>
               </div>
             </div>
-          </li>
-          <li class="accordion-item"><a href="#" class="item-content item-link">
-              <div class="item-inner">
-                <div class="item-title">Vraag 2</div>
-              </div></a>
-            <div class="accordion-item-content">
-              <div class="content-block">
-                <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
-              </div>
-            </div>
-          </li>
-
-          <li class="accordion-item"><a href="#" class="item-content item-link">
-              <div class="item-inner">
-                <div class="item-title">Vraag 3</div>
-              </div></a>
-            <div class="accordion-item-content">
-              <div class="content-block">
-                <p>Item 3 content. Lorem ipsum dolor sit amet...</p>
-              </div>
-            </div>
-          </li>
-
-          <li class="accordion-item"><a href="#" class="item-content item-link">
-              <div class="item-inner">
-                <div class="item-title">Vraag 4</div>
-              </div></a>
-            <div class="accordion-item-content">
-              <div class="content-block">
-                <p>Item 4 content. Lorem ipsum dolor sit amet...</p>
-              </div>
-            </div>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
