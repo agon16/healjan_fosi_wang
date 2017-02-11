@@ -38,7 +38,7 @@ myApp.onPageInit('home', function (page) {
   L.tileLayer('dir/tiles/{z0}/{x0}/{x1}/{y0}/{y1}.png').addTo(map); //gMapCatcher
 
   L.tileLayer('dir/tiles/{z}/{x}/{y}.png').addTo(map);
-  //other tiles
+
   L.marker([5.7481,-55.0988]).addTo(map)
        .bindPopup('Commewijne passie dja.')
        .openPopup();
