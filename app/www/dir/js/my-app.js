@@ -14,7 +14,7 @@ var mainView = myApp.addView('.view-main');
 //go to page on start
 myApp.onPageInit('index', function (page) {
   console.log('index initialized');
-  mainView.router.loadPage('views/home.html'); 
+  mainView.router.loadPage('views/specialisten.html'); 
 }).trigger();
 
 
@@ -23,7 +23,7 @@ myApp.onPageInit('home', function (page) {
   	console.log('home initialized');
 
   	//Init map
-  var map = L.map('map').setView([4.916,-55.042], 5);
+  // var map = L.map('map').setView([4.916,-55.042], 5);
 
    // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
    //   // L.tileLayer('../../../../../../tiles/', {
@@ -35,13 +35,13 @@ myApp.onPageInit('home', function (page) {
    //     .openPopup();
  
   //Custom script for Stack overflow
-  L.tileLayer('dir/tiles/{z0}/{x0}/{x1}/{y0}/{y1}.png').addTo(map); //gMapCatcher
+  // L.tileLayer('dir/tiles/{z0}/{x0}/{x1}/{y0}/{y1}.png').addTo(map); //gMapCatcher
 
-  L.tileLayer('dir/tiles/{z}/{x}/{y}.png').addTo(map);
+  // L.tileLayer('dir/tiles/{z}/{x}/{y}.png').addTo(map);
   //other tiles
-  L.marker([5.7481,-55.0988]).addTo(map)
-       .bindPopup('Commewijne passie dja.')
-       .openPopup();
+//   L.marker([5.7481,-55.0988]).addTo(map)
+//        .bindPopup('Commewijne passie dja.')
+//        .openPopup();
 
 });
 
@@ -76,13 +76,13 @@ myApp.onPageAfterAnimation('account', function (page) {
     }
   })
 
-  if (localStorage.getItem('healthy_userid') != null) {
-  	console.log('exists');
-    $('.white-overlay, ').hide();
-  }else{
-  	console.log('go to login');
-  	mainView.router.loadPage('views/login.html'); 
-  }
+  // if (localStorage.getItem('healthy_userid') != null) {
+  // 	console.log('exists');
+  //   $('.white-overlay, ').hide();
+  // }else{
+  // 	console.log('go to login');
+  // 	mainView.router.loadPage('views/login.html'); 
+  // }
 
   // agon
   function getAccount(){
@@ -282,3 +282,21 @@ $$.getJSON("http://gocodeops.com/healthy_do/api/api.php/faq?transform=true", fun
     });
   });
 });
+
+myApp.onPageInit('specialisten', function (page) {
+
+  console.log('specialisten');
+
+$$.getJSON("http://localhost/healjan_fosi_wang/backend/api/api.php/v_specialist_detail", function(data){
+    console.log(data);
+    $$('#full_name').html(data.first_name);
+    $$('#email').html( data.email);
+    $$('#adress').html(data.adress);
+    $$('#website').html(data.website);
+    $$('#name').html(data.name);
+    $$('#profile_picture').attr('src', data.profile_picture);
+    });
+  });
+
+
+// SELECT user.first_name, user.last_name, user.phone, user.email, user.adress, user.website, specialist.profile_picture, specialist_type.name FROM `user` INNER JOIN specialist ON user.id = specialist.user_id INNER JOIN specialist_type ON specialist_type.id = specialist.specialist_type_id
