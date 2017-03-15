@@ -22,26 +22,26 @@ myApp.onPageInit('index', function (page) {
 myApp.onPageInit('home', function (page) {
   	console.log('home initialized');
 
-  	//Init map
-  // var map = L.map('map').setView([4.916,-55.042], 5);
+  	Init map
+  var map = L.map('map').setView([4.916,-55.042], 5);
 
-   // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-   //   // L.tileLayer('../../../../../../tiles/', {
-   //     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-   // }).addTo(map);
+   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+     // L.tileLayer('../../../../../../tiles/', {
+       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+   }).addTo(map);
 
-   // L.marker([5.7481,-55.0988]).addTo(map)
-   //     .bindPopup('Commewijne passie dja.')
-   //     .openPopup();
+   L.marker([5.7481,-55.0988]).addTo(map)
+       .bindPopup('Commewijne passie dja.')
+       .openPopup();
  
-  //Custom script for Stack overflow
-  // L.tileLayer('dir/tiles/{z0}/{x0}/{x1}/{y0}/{y1}.png').addTo(map); //gMapCatcher
+  Custom script for Stack overflow
+  L.tileLayer('dir/tiles/{z0}/{x0}/{x1}/{y0}/{y1}.png').addTo(map); //gMapCatcher
 
-  // L.tileLayer('dir/tiles/{z}/{x}/{y}.png').addTo(map);
-  //other tiles
-//   L.marker([5.7481,-55.0988]).addTo(map)
-//        .bindPopup('Commewijne passie dja.')
-//        .openPopup();
+  L.tileLayer('dir/tiles/{z}/{x}/{y}.png').addTo(map);
+  other tiles
+  L.marker([5.7481,-55.0988]).addTo(map)
+       .bindPopup('Commewijne passie dja.')
+       .openPopup();
 
 });
 
