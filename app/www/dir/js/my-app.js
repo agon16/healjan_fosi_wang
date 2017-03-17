@@ -14,7 +14,7 @@ var mainView = myApp.addView('.view-main');
 //go to page on start
 myApp.onPageInit('index', function (page) {
   console.log('index initialized');
-  mainView.router.loadPage('views/specialisten.html'); 
+  mainView.router.loadPage('views/home.html'); 
 }).trigger();
 
 
@@ -22,23 +22,23 @@ myApp.onPageInit('index', function (page) {
 myApp.onPageInit('home', function (page) {
   	console.log('home initialized');
 
-  	Init map
+  	// Init map
   var map = L.map('map').setView([4.916,-55.042], 5);
 
-   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-     // L.tileLayer('../../../../../../tiles/', {
-       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-   }).addTo(map);
+   // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+   //   // L.tileLayer('../../../../../../tiles/', {
+   //     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+   // }).addTo(map);
 
-   L.marker([5.7481,-55.0988]).addTo(map)
-       .bindPopup('Commewijne passie dja.')
-       .openPopup();
+   // L.marker([5.7481,-55.0988]).addTo(map)
+   //     .bindPopup('Commewijne passie dja.')
+   //     .openPopup();
  
-  Custom script for Stack overflow
+  // Custom script for Stack overflow
   L.tileLayer('dir/tiles/{z0}/{x0}/{x1}/{y0}/{y1}.png').addTo(map); //gMapCatcher
 
   L.tileLayer('dir/tiles/{z}/{x}/{y}.png').addTo(map);
-  other tiles
+  // other tiles
   L.marker([5.7481,-55.0988]).addTo(map)
        .bindPopup('Commewijne passie dja.')
        .openPopup();
@@ -49,9 +49,9 @@ myApp.onPageInit('home', function (page) {
 myApp.onPageAfterAnimation('home', function (page) {
   console.log('home after animation');
 
-  $$('.head .right, .overlay').on('click', function(){
+  $$('.head .right, .overlay').on('click', function() {
     $$('.page-content').toggleClass('legende-open');
-  })
+  });
 });
 
 
@@ -73,8 +73,8 @@ myApp.onPageAfterAnimation('account', function (page) {
     }else if($$(this).prop('checked') == false){
       $$('#beveiliging').hide();
       beveiliging_sectie = false;
-    }
-  })
+    };
+  });
 
   // if (localStorage.getItem('healthy_userid') != null) {
   // 	console.log('exists');
@@ -88,14 +88,14 @@ myApp.onPageAfterAnimation('account', function (page) {
   function getAccount(){
     $$.getJSON("http://gocodeops.com/healthy_do/api/api.php/user?transform=true&filter=id,eq,1", function(data){
     console.log(data['user']);
-    $$.each(data['user'], function(i, value){
-      $$("#voornaam").val(value.first_name);
-      $$("#achternaam").val(value.last_name);
-      $$("#gender").val(value.gender);
-      $$("#telefoon").val(value.phone);
+      $$.each(data['user'], function(i, value){
+        $$("#voornaam").val(value.first_name);
+        $$("#achternaam").val(value.last_name);
+        $$("#gender").val(value.gender);
+        $$("#telefoon").val(value.phone);
+      });
     });
-  });
-  }
+  };
 
   getAccount();
 
@@ -287,16 +287,13 @@ myApp.onPageInit('specialisten', function (page) {
 
   console.log('specialisten');
 
-$$.getJSON("http://localhost/healjan_fosi_wang/backend/api/api.php/v_specialist_detail", function(data){
-    console.log(data);
-    $$('#full_name').html(data.first_name);
-    $$('#email').html( data.email);
-    $$('#adress').html(data.adress);
-    $$('#website').html(data.website);
-    $$('#name').html(data.name);
-    $$('#profile_picture').attr('src', data.profile_picture);
-    });
-  });
-
-
-// SELECT user.first_name, user.last_name, user.phone, user.email, user.adress, user.website, specialist.profile_picture, specialist_type.name FROM `user` INNER JOIN specialist ON user.id = specialist.user_id INNER JOIN specialist_type ON specialist_type.id = specialist.specialist_type_id
+  $$.getJSON("http://localhost/healjan_fosi_wang/backend/api/api.php/v_specialist_detail", function(data){
+      console.log(data);
+      $$('#full_name').html(data.first_name);
+      $$('#email').html( data.email);
+      $$('#adress').html(data.adress);
+      $$('#website').html(data.website);
+      $$('#name').html(data.name);
+      $$('#profile_picture').attr('src', data.profile_picture);
+      });
+});
