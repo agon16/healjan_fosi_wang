@@ -34,12 +34,16 @@ myApp.onPageInit('home', function (page) {
    //     .bindPopup('Commewijne passie dja.')
    //     .openPopup();
  
-  // Custom script for Stack overflow
+  // Custom script from Stack overflow
   L.tileLayer('dir/tiles/{z0}/{x0}/{x1}/{y0}/{y1}.png').addTo(map); //gMapCatcher
-
   L.tileLayer('dir/tiles/{z}/{x}/{y}.png').addTo(map);
-  // other tiles
+  
+  // Load local tiles
   L.marker([5.7481,-55.0988]).addTo(map)
+       .bindPopup('Commewijne passie dja.')
+       .openPopup();
+
+  L.marker([5.7481,-54.0988]).addTo(map)
        .bindPopup('Commewijne passie dja.')
        .openPopup();
 
