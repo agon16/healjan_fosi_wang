@@ -62,7 +62,7 @@ $app->group('/speclialist', function() {
 		if($query_type) {
 			$specialist_id = $query_read->fetch_assoc();
 			$specialist_id = $specialist_id['id'];
-			$conn->query("INSERT INTO specialist (specialist_type_id, profile_picture, latitude, longitude, created_at) VALUES ('$specialist_id', '$picture', '$latitude', '$longitude', NOW())";
+			$conn->query("INSERT INTO specialist (specialist_type_id, profile_picture, latitude, longitude, created_at) VALUES ('$specialist_id', '$picture', '$latitude', '$longitude', NOW()");
 		} else {
 			echo 0;
 		}

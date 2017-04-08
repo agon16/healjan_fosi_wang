@@ -59,7 +59,7 @@ $app->group('/leave', function() {
 		if($query_type) {
 			$leave_id = $query_read->fetch_assoc();
 			$leave_id = $leave_id['id'];
-			$conn->query("INSERT INTO leave (leave_type_id, date_from, date_to , created_at) VALUES ('$leave_id', '$date_from', '$date_to', NOW())";
+			$conn->query("INSERT INTO leave (leave_type_id, date_from, date_to, created_at) VALUES ('$leave_id', '$date_from', '$date_to', NOW()");
 		} else {
 			echo 0;
 		}
@@ -103,7 +103,7 @@ $app->group('/leave', function() {
 		if($query_type) {
 			$leave_id = $query_read->fetch_assoc();
 			$leave_id = $leave_id['id'];
-			$conn->query("UPDATE leave SET leave_type_id = '$leave_id', date_from = '$date_from', date_to = '$date_to' , created_at = NOW() WHERE id = '$id'";
+			$conn->query("UPDATE leave SET leave_type_id = '$leave_id', date_from = '$date_from', date_to = '$date_to' , created_at = NOW() WHERE id = '$id'");
 		} else {
 			echo 0;
 		}

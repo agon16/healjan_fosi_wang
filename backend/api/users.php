@@ -8,7 +8,7 @@ $app->post('/login', function() {
 	$email = $_POST['email'];
 	$password = sha1($_POST['password']);
 
-	$sql = "SELECT * FROM users";
+	$sql = "SELECT * FROM user";
 	$query = $conn->query($sql);
 	$array = array(); //Create array
 
@@ -28,7 +28,7 @@ $app->group('/users', function() {
 
 		require 'db.php'; //DB connection
 
-		$sql = "SELECT * FROM users";
+		$sql = "SELECT * FROM user";
 		$query = $conn->query($sql);
 		$array = array(); //Create array
 
@@ -49,7 +49,7 @@ $app->group('/users', function() {
 		//Arguments
 		$user_id = $args['id'];
 
-		$sql = "SELECT * FROM users WHERE id = '$user_id'";
+		$sql = "SELECT * FROM user WHERE id = '$user_id'";
 		$query = $conn->query($sql);
 		$array = array(); //Create array
 
@@ -96,7 +96,7 @@ $app->group('/users', function() {
 		//Params
 		$user_id = $_POST['user_id'];
 
-		$sql = "DELETE FROM users WHERE id = '$user_id'";
+		$sql = "DELETE FROM user WHERE id = '$user_id'";
 		$query = $conn->query($sql);
 
 		if($query) {
