@@ -22,55 +22,31 @@ myApp.onPageInit('index', function (page) {
 myApp.onPageInit('home', function (page) {
   	console.log('home initialized');
 
-  	//Init map
 
-  	var map = L.map('map').setView([5.7481,-55.0988], 11);
+  	// Init map
+  var map = L.map('map').setView([4.916,-55.042], 5);
 
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+   // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+   //   // L.tileLayer('../../../../../../tiles/', {
+   //     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+   // }).addTo(map);
 
-L.marker([5.7481,-55.0988]).addTo(map)
-    .bindPopup('Commewijne passie dja.')
-    .openPopup();
+   // L.marker([5.7481,-55.0988]).addTo(map)
+   //     .bindPopup('Commewijne passie dja.')
+   //     .openPopup();
+ 
+  // Custom script from Stack overflow
+  L.tileLayer('dir/tiles/{z0}/{x0}/{x1}/{y0}/{y1}.png').addTo(map); //gMapCatcher
+  L.tileLayer('dir/tiles/{z}/{x}/{y}.png').addTo(map);
+  
+  // Load local tiles
+  L.marker([5.7481,-55.0988]).addTo(map)
+       .bindPopup('Commewijne passie dja.')
+       .openPopup();
 
-	var coolPlaces = new L.LayerGroup();
-    L.marker([-41.29042, 174.78219])
-        .bindPopup('Te Papa').addTo(coolPlaces),
-    L.marker([-41.29437, 174.78405])
-        .bindPopup('Embassy Theatre').addTo(coolPlaces),
-    L.marker([-41.2895, 174.77803])
-        .bindPopup('Michael Fowler Centre').addTo(coolPlaces),
-    L.marker([-41.28313, 174.77736])
-        .bindPopup('Leuven Belgin Beer Cafe').addTo(coolPlaces),
-    L.polyline([
-        [-41.28313, 174.77736],
-        [-41.2895, 174.77803],
-        [-41.29042, 174.78219],
-        [-41.29437, 174.78405]
-        ]
-        ).addTo(coolPlaces);
-    var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
-        thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
-    
-    var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        osmAttrib = '&copy; ' + osmLink + ' Contributors',
-        landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
-        thunAttrib = '&copy; '+osmLink+' Contributors & '+thunLink;
-    var osmMap = L.tileLayer(osmUrl, {attribution: osmAttrib}),
-        landMap = L.tileLayer(landUrl, {attribution: thunAttrib});
-    var map = L.map('map', {
-		    layers: [osmMap] // only add one!
-	    })
-	    .setView([-41.2858, 174.78682], 14);
-	var baseLayers = {
-		"OSM Mapnik": osmMap,
-		"Landscape": landMap
-	};
-	var overlays = {
-		"Interesting places": coolPlaces
-	};
-	L.control.layers(baseLayers,overlays).addTo(map);
+  L.marker([5.7481,-54.0988]).addTo(map)
+       .bindPopup('Commewijne passie dja.')
+       .openPopup();
 
 });
 
@@ -78,9 +54,9 @@ L.marker([5.7481,-55.0988]).addTo(map)
 myApp.onPageAfterAnimation('home', function (page) {
   console.log('home after animation');
 
-  $$('.head .right, .overlay').on('click', function(){
+  $$('.head .right, .overlay').on('click', function() {
     $$('.page-content').toggleClass('legende-open');
-  })
+  });
 });
 
 
@@ -102,29 +78,29 @@ myApp.onPageAfterAnimation('account', function (page) {
     }else if($$(this).prop('checked') == false){
       $$('#beveiliging').hide();
       beveiliging_sectie = false;
-    }
-  })
+    };
+  });
 
-  if (localStorage.getItem('healthy_userid') != null) {
-  	console.log('exists');
-    $('.white-overlay, ').hide();
-  }else{
-  	console.log('go to login');
-  	mainView.router.loadPage('views/login.html'); 
-  }
+  // if (localStorage.getItem('healthy_userid') != null) {
+  // 	console.log('exists');
+  //   $('.white-overlay, ').hide();
+  // }else{
+  // 	console.log('go to login');
+  // 	mainView.router.loadPage('views/login.html'); 
+  // }
 
   // agon
   function getAccount(){
     $$.getJSON("http://gocodeops.com/healthy_do/api/api.php/user?transform=true&filter=id,eq,1", function(data){
     console.log(data['user']);
-    $$.each(data['user'], function(i, value){
-      $$("#voornaam").val(value.first_name);
-      $$("#achternaam").val(value.last_name);
-      $$("#gender").val(value.gender);
-      $$("#telefoon").val(value.phone);
+      $$.each(data['user'], function(i, value){
+        $$("#voornaam").val(value.first_name);
+        $$("#achternaam").val(value.last_name);
+        $$("#gender").val(value.gender);
+        $$("#telefoon").val(value.phone);
+      });
     });
-  });
-  }
+  };
 
   getAccount();
 
@@ -311,4 +287,19 @@ $$.getJSON("http://gocodeops.com/healthy_do/api/api.php/faq?transform=true", fun
                     $$('#faq').append(faq_item);
     });
   });
+});
+
+myApp.onPageInit('specialisten', function (page) {
+
+  console.log('specialisten');
+
+  $$.getJSON("http://localhost/healjan_fosi_wang/backend/api/api.php/v_specialist_detail", function(data){
+      console.log(data);
+      $$('#full_name').html(data.first_name);
+      $$('#email').html( data.email);
+      $$('#adress').html(data.adress);
+      $$('#website').html(data.website);
+      $$('#name').html(data.name);
+      $$('#profile_picture').attr('src', data.profile_picture);
+      });
 });
