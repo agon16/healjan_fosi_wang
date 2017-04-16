@@ -263,13 +263,10 @@ body{
 	opacity: 0.4;
 	background-color: black;
 }
-.naam{
-	position: absolute;
-	top: 300px;
-	background-color: initial;
-
+.accordion-list.sickness .content-block li{
+	list-style-type: square !important;
+	margin-left: 20px;
 }
-
 /*@media queries*/
 @media screen and (orientation: landscape) {
    .map-icon.settings{
