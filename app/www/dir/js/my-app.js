@@ -91,9 +91,9 @@ myApp.onPageAfterAnimation('account', function (page) {
 
   // agon
   function getAccount(){
-    $$.getJSON("http://gocodeops.com/healthy_do/api/api.php/user?transform=true&filter=id,eq,1", function(data){
-    console.log(data['user']);
-      $$.each(data['user'], function(i, value){
+    $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/users/get/1", function(data){
+      
+      $$.each(data, function(i, value){
         $$("#voornaam").val(value.first_name);
         $$("#achternaam").val(value.last_name);
         $$("#gender").val(value.gender);
@@ -126,15 +126,15 @@ myApp.onPageAfterAnimation('account', function (page) {
     console.log(data);
 
     $$.ajax({
-      type: "PUT",
-      url: "http://gocodeops.com/healthy_do/api/api.php/user/1",
+      type: "POST",
+      url: "http://gocodeops.com/healthy_do/api/index.php/user/1",
       dataType: "application/JSON", 
       contentType: "application/x-www-form-urlencoded; charset=utf-8",
       data: JSON.stringify(data),
-      success: function(data){
-      // myApp.alert("success: id:" + data);
-      console.log("success");
-      getAccount();
+      success: function(data) {
+        // myApp.alert("success: id:" + data);
+        console.log("success");
+        getAccount();
       }
     })
   })
@@ -143,19 +143,19 @@ myApp.onPageAfterAnimation('account', function (page) {
 myApp.onPageInit('login', function (page) {
   console.log('login init');
 
-  $$('#login-form').submit( function(e){
+  $$('#login-form').submit( function(e) {
     e.preventDefault();
 
     var formData = myApp.formToJSON('#login-form');
 
-    $$.getJSON("http://gocodeops.com/healthy_do/api/api.php/user?filter[]=phone,eq,"+ formData.phone +"&filter[]=password,eq," + formData.password + '&transform=true"', function(data){
-      console.log(data);
+    $$.post("http://gocodeops.com/healthy_do/api/index.php/login", {phone: formData.phone, password: formData.password}, function(data){
+      data = JSON.parse(data);
 
-      if (data['user'].length != 0) {
-        localStorage.setItem('healthy_userid', data);
-        mainView.router.loadPage('views/account.html'); 
-      } else {
+      if(data.result == 'false') {
         myApp.alert("Mobielnummer of password incorrect!");
+      } else if(data[0].id) {
+        localStorage.setItem('healthy_userid', data[0].id);
+        mainView.router.loadPage('views/account.html');
       }
     });
   });
@@ -227,9 +227,9 @@ myApp.onPageInit('aanmelden', function (page) {
 myApp.onPageInit('symptomen', function (page) {
   console.log('symptomen init');
 
-  $$.getJSON("http://gocodeops.com/healthy_do/api/api.php/sickness?transform=true", function(data){
-    console.log(data['sickness']);
-    $$.each(data['sickness'], function(i, value){
+  $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/sickness/get", function(data){
+    console.log(data);
+    $$.each(data, function(i, value){
       var symptoom = '<li>'+
                         '<a href="views/symptoom_detail.html?id='+value.id+'" class="item-link item-content">'+
                           '<div class="item-inner">'+
@@ -252,15 +252,14 @@ myApp.onPageInit('symptoom_detail', function (page) {
   // console.log(page.query.id);
   var symptoom_id = page.query.id;
 
-  $$.getJSON("http://gocodeops.com/healthy_do/api/api.php/sickness/"+symptoom_id, function(data){
+  $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/sickness/get/"+symptoom_id, function(data){
     console.log(data);
 
-    $$('#symptoom_detail_name').text(data.name);
-    $$('#symptoom_detail_img').attr('src', data.picture);
-    $$('#description').html(data.description);
-    $$('#symptoms').html(data.symptoms);
-    $$('#actions').html(data.actions);
-    $$('#get_help').html(data.get_help);
+    $$('#symptoom_detail_name').text(data[0].name);
+    $$('#symptoom_detail_img').attr('src', data[0].picture);
+    $$('#description').html(data[0].description);
+    $$('#symptoms').html(data[0].symptoms);
+    $$('#actions').html(data[0].actions);
 
   });
 });
@@ -268,9 +267,9 @@ myApp.onPageInit('symptoom_detail', function (page) {
 
 myApp.onPageInit('faq', function (page) {
   console.log('faq init');
-$$.getJSON("http://gocodeops.com/healthy_do/api/api.php/faq?transform=true", function(data){
-    console.log(data['faq']);
-    $$.each(data['faq'], function(i, value){
+$$.getJSON("http://gocodeops.com/healthy_do/api/index.php/faq/get", function(data){
+    console.log(data);
+    $$.each(data, function(i, value){
       // console.log(value.first_name); 
       var faq_item = '<li class="accordion-item">'+
                         '<a href="#" class="item-content item-link">'+
@@ -284,7 +283,7 @@ $$.getJSON("http://gocodeops.com/healthy_do/api/api.php/faq?transform=true", fun
                           '</div>'+
                         '</div>'+
                       '</li>';
-                    $$('#faq').append(faq_item);
+      $$('#faq').append(faq_item);
     });
   });
 });
@@ -293,13 +292,15 @@ myApp.onPageInit('specialisten', function (page) {
 
   console.log('specialisten');
 
-  $$.getJSON("http://localhost/healjan_fosi_wang/backend/api/api.php/v_specialist_detail", function(data){
-      console.log(data);
-      $$('#full_name').html(data.first_name);
-      $$('#email').html( data.email);
-      $$('#adress').html(data.adress);
-      $$('#website').html(data.website);
-      $$('#name').html(data.name);
-      $$('#profile_picture').attr('src', data.profile_picture);
-      });
+  $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/speclialist/get/1", function(data) {
+    console.log(data);
+
+    $$('#full_name').html(data[0].first_name);
+    $$('#email').html( data[0].email);
+    $$('#adress').html(data[0].adress);
+    $$('#website').html(data[0].website);
+    $$('#name').html(data[0].name);
+    $$('#phone').html(data[0].phone);
+    $$('#profile_picture').attr('src', data[0].profile_picture);
+  });
 });

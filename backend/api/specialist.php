@@ -6,7 +6,7 @@ $app->group('/speclialist', function() {
 
 		require 'db.php'; //DB connection
 
-		$sql = "SELECT * FROM v_speclialists";
+		$sql = "SELECT * FROM v_specialists";
 		$query = $conn->query($sql);
 		$array = array(); //Create array
 
@@ -27,7 +27,7 @@ $app->group('/speclialist', function() {
 		//Arguments
 		$speclialist_id = $args['id'];
 
-		$sql = "SELECT * FROM v_speclialists WHERE user_id = '$speclialist_id'";
+		$sql = "SELECT * FROM v_specialists WHERE user_id = '$speclialist_id'";
 		$query = $conn->query($sql);
 		$array = array(); //Create array
 
