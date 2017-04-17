@@ -20,33 +20,44 @@ myApp.onPageInit('index', function (page) {
 
 // onPageInit
 myApp.onPageInit('home', function (page) {
-  	console.log('home initialized');
+  console.log('home initialized');
 
+  // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  //   // L.tileLayer('../../../../../../tiles/', {
+  //     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  // }).addTo(map);
 
-  	// Init map
+  // L.marker([5.7481,-55.0988]).addTo(map)
+  //     .bindPopup('Commewijne passie dja.')
+  //     .openPopup();
+
+  // Init map
   var map = L.map('map').setView([4.916,-55.042], 5);
 
-   // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-   //   // L.tileLayer('../../../../../../tiles/', {
-   //     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-   // }).addTo(map);
-
-   // L.marker([5.7481,-55.0988]).addTo(map)
-   //     .bindPopup('Commewijne passie dja.')
-   //     .openPopup();
- 
   // Custom script from Stack overflow
   L.tileLayer('dir/tiles/{z0}/{x0}/{x1}/{y0}/{y1}.png').addTo(map); //gMapCatcher
   L.tileLayer('dir/tiles/{z}/{x}/{y}.png').addTo(map);
-  
-  // Load local tiles
-  L.marker([5.7481,-55.0988]).addTo(map)
-       .bindPopup('Commewijne passie dja.')
-       .openPopup();
 
-  L.marker([5.7481,-54.0988]).addTo(map)
-       .bindPopup('Commewijne passie dja.')
-       .openPopup();
+  $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/speclialist/get", function(data) {
+    console.log(data);
+    $$.each(data, function(i, value) {
+      var greenIcon = L.icon({
+        iconUrl: 'dir/js/images/surgeon.png',
+        // shadowUrl: 'leaf-shadow.png',
+
+        iconSize:     [32, 32], // size of the icon
+        // shadowSize:   [50, 64], // size of the shadow
+        iconAnchor:   [32, 32], // point of the icon which will correspond to marker's location
+        // shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+      });
+
+      // Load local tiles
+      L.marker([ data[i].latitude, data[i].longitude], {icon: greenIcon} ).addTo(map)
+           .bindPopup(data[i].first_name+" "+data[i].last_name)
+           .openPopup();
+    });
+  });  
 
 });
 
