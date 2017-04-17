@@ -1,4 +1,7 @@
 <?php
+// header('Access-Control-Allow-Headers: *');
+// header('Access-Control-Allow-Origin: *');
+
 
 /**
  * Step 1: Require the Slim Framework using Composer's autoloader
@@ -17,7 +20,6 @@ require 'vendor/autoload.php';
  * of setting names and values into the application constructor.
  */
 $app = new Slim\App();
-header('Access-Control-Allow-Origin:*');
 /**
  * Step 3: Define the Slim application routes
  *
@@ -26,6 +28,8 @@ header('Access-Control-Allow-Origin:*');
  * argument for `Slim::get`, `Slim::post`, `Slim::put`, `Slim::patch`, and `Slim::delete`
  * is an anonymous function.
  */
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json; charset=utf-8');
 
 require 'db.php';
 require 'faq.php';
@@ -40,4 +44,7 @@ require 'users.php';
  * This method should be called last. This executes the Slim application
  * and returns the HTTP response to the HTTP client.
  */
+
+header('Content-Type: application/json');
+
 $app->run();
