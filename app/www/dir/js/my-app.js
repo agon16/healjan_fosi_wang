@@ -54,8 +54,7 @@ myApp.onPageInit('home', function (page) {
 
       // Load local tiles
       L.marker([ data[i].latitude, data[i].longitude], {icon: greenIcon} ).addTo(map)
-           .bindPopup(data[i].first_name+" "+data[i].last_name+" <br><button onclick='goToSpecialist(\""+data[i].user_id+"\")'>Go to user</button>")
-           .openPopup();
+           .bindPopup(data[i].first_name+" "+data[i].last_name+" <div align='center'><br><button class='button button-round active' onclick='goToSpecialist(\""+data[i].user_id+"\")'>Details</button></div>");
     });
   });  
 
@@ -141,8 +140,6 @@ myApp.onPageAfterAnimation('account', function (page) {
         phone: formData.phone
       }
     }
-
-    console.log(formData.first_name);
 
     $$.post('http://gocodeops.com/healthy_do/api/index.php/users/modify', {
         id: user_id,
@@ -247,20 +244,34 @@ myApp.onPageInit('aanmelden', function (page) {
     e.preventDefault();
 
     var formData = myApp.formToJSON('#aanmelden-form');
-    console.log(JSON.stringify(formData));
+    // console.log(JSON.stringify(formData));
 
-    $$.ajax({
-      type: "POST",
-      url: "http://gocodeops.com/healthy_do/api/api.php/user",
-      dataType: "application/json",
-      contentType: "application/x-www-form-urlencoded; charset=utf-8",
-      data: JSON.stringify(formData),
-      success: function(data){
-        // make a localstorage
-        localStorage.setItem('healthy_userid', data);
-        mainView.router.loadPage('views/account.html'); 
-      }
-    });
+    // $$.ajax({
+    //   type: "POST",
+    //   url: "http://gocodeops.com/healthy_do/api/api.php/user",
+    //   dataType: "application/json",
+    //   contentType: "application/x-www-form-urlencoded; charset=utf-8",
+    //   data: JSON.stringify(formData),
+    //   success: function(data){
+    //     // make a localstorage
+    //     localStorage.setItem('healthy_userid', data);
+    //     mainView.router.loadPage('views/account.html'); 
+    //   }
+    // });
+
+    $$.post('http://gocodeops.com/healthy_do/api/index.php/users/add', 
+      {
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        gender: formData.gender,
+        password: formData.password,
+        phone: formData.phone
+      }, function(data) {
+        if(data == 1) {
+          myApp.alert("Fout opgetreden!");
+        }
+      });
+
   });
 });
 
