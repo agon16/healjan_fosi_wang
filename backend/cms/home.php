@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- head informatie -->
-    <?php require 'head.php'; ?>
-  </head>
+   <!-- head informatie -->
+  <?php require 'head.php'; ?>
+  
   <body class="hold-transition skin-green sidebar-mini">
     <div class="wrapper">
       
