@@ -54,7 +54,7 @@ myApp.onPageInit('home', function (page) {
 
       // Load local tiles
       L.marker([ data[i].latitude, data[i].longitude], {icon: greenIcon} ).addTo(map)
-           .bindPopup(data[i].first_name+" "+data[i].last_name)
+           .bindPopup(data[i].first_name+" "+data[i].last_name+" <br><button onclick='goToSpecialist(\""+data[i].user_id+"\")'>Go to user</button>")
            .openPopup();
     });
   });  
@@ -78,7 +78,7 @@ myApp.onPageAfterAnimation('account', function (page) {
   // hiden van beveiliging sectie
   $$('#beveiliging').hide();
 
-  var beveiliging_sectie = false;
+  var beveiliging_sectie = false, user_id;
 
   //hide beveiliging sectie
   $$('input[type=checkbox]').on('change', function(){
@@ -101,8 +101,8 @@ myApp.onPageAfterAnimation('account', function (page) {
   // }
 
   // agon
-  function getAccount(){
-    $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/users/get/1", function(data){
+  function getAccount(user_id){
+    $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/users/get/"+user_id, function(data){
       
       $$.each(data, function(i, value){
         $$("#voornaam").val(value.first_name);
@@ -114,10 +114,11 @@ myApp.onPageAfterAnimation('account', function (page) {
   };
 
   if (localStorage.getItem('healthy_userid') != undefined) {
-    mainView.router.loadPage('views/login.html');
-  }else{
-    getAccount();
+    user_id = localStorage.getItem('healthy_userid')
+    getAccount(user_id); // Get user details
     $$('.white-overlay').remove();
+  } else {
+    mainView.router.loadPage('views/login.html');
   }
 
 
@@ -133,6 +134,7 @@ myApp.onPageAfterAnimation('account', function (page) {
     }else{
       console.log("het is er niet");
       data = {
+        id: user_id,
         first_name: formData.first_name,
         last_name: formData.last_name,
         gender: formData.gender,
@@ -140,20 +142,41 @@ myApp.onPageAfterAnimation('account', function (page) {
       }
     }
 
-    console.log(data);
+    console.log(formData.first_name);
 
-    $$.ajax({
-      type: "POST",
-      url: "http://gocodeops.com/healthy_do/api/index.php/user/1",
-      dataType: "application/JSON", 
-      contentType: "application/x-www-form-urlencoded; charset=utf-8",
-      data: JSON.stringify(data),
-      success: function(data) {
-        // myApp.alert("success: id:" + data);
-        console.log("success");
-        getAccount();
-      }
-    })
+    $$.post('http://gocodeops.com/healthy_do/api/index.php/users/modify', {
+        id: user_id,
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        gender: formData.gender,
+        phone: formData.phone
+      }, function(data) {
+        if(data == 1) {
+          mainView.router.loadPage('views/account.html');
+        } else {
+          myApp.alert("Error occurred.")
+        }
+      });
+
+    // $$.ajax({
+    //   type: "POST",
+    //   url: "http://gocodeops.com/healthy_do/api/index.php/users/modify",
+    //   dataType: "application/JSON", 
+    //   contentType: "application/x-www-form-urlencoded; charset=utf-8",
+    //   // data: JSON.stringify(data),
+    //   data: {
+    //     id: user_id,
+    //     first_name: formData.first_name,
+    //     last_name: formData.last_name,
+    //     gender: formData.gender,
+    //     phone: formData.phone
+    //   },
+    //   success: function(data) {
+    //     myApp.alert("Success. ID: " + data);
+    //     console.log("success");
+    //     getAccount();
+    //   }
+    // })
   })
 });
 
@@ -269,6 +292,8 @@ myApp.onPageInit('symptoom_detail', function (page) {
   // console.log(page.query.id);
   var symptoom_id = page.query.id;
 
+  console.log(symptoom_id);
+
   $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/sickness/get/"+symptoom_id, function(data){
     console.log(data);
 
@@ -308,8 +333,9 @@ $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/faq/get", function(dat
 myApp.onPageInit('specialisten', function (page) {
 
   console.log('specialisten');
+  var user_id = page.query.id;
 
-  $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/speclialist/get/1", function(data) {
+  $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/speclialist/get/"+user_id, function(data) {
     console.log(data);
 
     $$('#full_name').html(data[0].first_name);
@@ -321,3 +347,7 @@ myApp.onPageInit('specialisten', function (page) {
     $$('#profile_picture').attr('src', data[0].profile_picture);
   });
 });
+
+function goToSpecialist(id) {
+  mainView.router.loadPage('views/specialisten.html?id='+id);
+}
