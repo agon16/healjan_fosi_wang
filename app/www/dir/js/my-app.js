@@ -62,7 +62,7 @@ myApp.onPageAfterAnimation('home', function (page) {
 
 
 myApp.onPageAfterAnimation('account', function (page) {
-  console.log('account before animation');
+  console.log('account after animation');
 
   // hiden van beveiliging sectie
   $$('#beveiliging').hide();
@@ -102,7 +102,13 @@ myApp.onPageAfterAnimation('account', function (page) {
     });
   };
 
-  getAccount();
+  if (localStorage.getItem('healthy_userid') != undefined) {
+    mainView.router.loadPage('views/login.html');
+  }else{
+    getAccount();
+    $$('.white-overlay').remove();
+  }
+
 
   $$('#form-account').submit(function(e){
     e.preventDefault();
