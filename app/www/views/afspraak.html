@@ -1,5 +1,5 @@
 <div class="pages">
-  <div data-page="about" class="page navbar-fixed theme-teal">
+  <div data-page="afspraak" class="page navbar-fixed theme-teal">
 
     <div class="navbar">
       <div class="navbar-inner">
@@ -10,29 +10,33 @@
         </div>
         <div class="center">Afspraak</div>
         <div class="right">
-        	<a href="#" class=" link">
+        	<a href="#" class=" link back">
         		<img src="dir/img/window-close.png">
            </a>
         </div>
       </div>
     </div>
 
-    <div class="page-content">
+    <div class="page-content bg-blue-gray-100">
       <div class="specialist-detail">
         <img src="dir/img/doctor.jpg" class="img_opacity">
       </div>
-      <div class="content-block">
+      <div class="content-block naam_specialist">
       	<span class="naam color-white">Dr. Andwele R.</span>
       </div>
-
+      <div class="content-block item-content">
+        <div class="item-inner">
+          <div class="item-input">
+            <input class="date_zetten" type="text" placeholder="Select dates" readonly id="calendar-disabled">
+            <i class="icon calendar"></i>
+          </div>
+        </div>
+      </div>
       <div class="content-block">
-        <div class="content-block-title">Disabled Dates</div>
-<div class="content-block-title">Inline with custom toolbar</div>
-<div class="content-block">
-  <div style="padding:0; margin-right:-15px; width:auto" class="content-block-inner">
-    <div id="calendar-inline-container"></div>
-  </div>
-</div>     
+        <p class="buttons-row">
+          <a href="#" class="button bg-teal color-white">AM</a>
+          <a href="#" class="button bg-white color-teal">PM</a>
+        </p>
       </div>
       <div class="content-block">
         <p><a href="#" class="button active bg-teal color-white">Afspraak maken</a></p>

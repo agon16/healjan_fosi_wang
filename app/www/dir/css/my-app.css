@@ -187,7 +187,7 @@ body{
 	background-color: black;
 }
 .specialist-detail img{
-	height: auto;
+	height: 100%;
 	width: 100%;
 }
 .detail-icon{
@@ -279,4 +279,153 @@ body{
 		bottom: -250px;
 		height: 300px;
 	}
+}
+
+
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.container {
+  margin: 0 auto;
+  height: auto;
+  width: 90%;
+  box-shadow: 0 10px 20px 5px rgba(255, 255, 255, .2);
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase;
+}
+
+.curr-month {
+  width: 100%;
+  height: auto;
+  border: 1px solid #f1c40f;
+  border-top: 15px solid #f1c40f;
+  background-color: #f39c12;
+  color: #fff;
+  font-size: 40px;
+  text-align: center;
+  line-height: 80px;
+  font-size: 25px;
+}
+
+.curr-month sup {
+  font-size: 15px;
+}
+
+.all-days {
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  float: left;
+  display: none;
+}
+
+ul {
+  list-style: none;
+  display: block;
+  height: 30px;
+  width: 100%;
+  margin: 0 auto;
+  float: left;
+}
+
+ul li {
+  float: left;
+  width: 100%;
+  text-align: left;
+  line-height: 41px;
+}
+
+.all-date {
+  width: 100%;
+  height: auto;
+  float: left;
+}
+
+.all-date li {
+  height: 60px;
+  width: 100%;
+  line-height: 60px;
+  border-top: 1px solid #fff;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  background-color: #ccc;
+  opacity: 1;
+  text-indent: 20px;
+}
+
+.all-date li.inactive {
+  opacity: .8;
+  display: none;
+}
+
+.all-date li.monthdate:hover {
+  background-color: #f39c12;
+  color: #fff;
+}
+
+.all-date li sup {
+  display: inline;
+}
+
+a {
+  text-decoration: none;
+  color: #fff
+}
+
+@media only screen and (min-width:421px) {
+  .container {
+    height: 487px;
+    width: 421px;
+  }
+  .curr-month {
+    border-left: 0px;
+    border-right: 0px;
+    font-size: 40px;
+  }
+  .curr-month sup {
+    font-size: 20px;
+  }
+  .all-days {
+    display: block;
+  }
+  ul li {
+    width: 60px;
+    text-align: center;
+  }
+  .all-date {
+    height: 305px;
+  }
+  .all-date li {
+    width: 59px;
+    border-right: none;
+    text-indent: 0px;
+  }
+  .all-date li.b-bottom {
+    border-bottom: 1px solid #fff;
+  }
+  .all-date li.b-right {
+    border-right: 1px solid #fff;
+  }
+  .all-date li.bnone {
+    border-right: none;
+  }
+  .all-date li.inactive {
+    display: block;
+  }
+  .all-date li sup {
+    display: none;
+  }
+}
+.naam_specialist{
+	position: absolute;
+	top: 180px;
+}
+.date_zetten{
+	width: 100%;
+	height: 30px;
+	font-size: 15px;
+    text-align: center;
 }
