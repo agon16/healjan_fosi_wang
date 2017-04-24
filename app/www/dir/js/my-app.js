@@ -10,7 +10,6 @@ var $$ = Dom7;
 // initialize mainview 
 var mainView = myApp.addView('.view-main');
 
-
 //go to page on start
 myApp.onPageInit('index', function (page) {
   console.log('index initialized');
@@ -67,9 +66,8 @@ myApp.onPageAfterAnimation('home', function (page) {
   $$('.head .right, .overlay').on('click', function() {
     $$('.page-content').toggleClass('legende-open');
   });
+  
 });
-
-
 
 myApp.onPageAfterAnimation('account', function (page) {
   console.log('account after animation');
@@ -349,6 +347,7 @@ myApp.onPageInit('specialisten', function (page) {
   $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/speclialist/get/"+user_id, function(data) {
     console.log(data);
 
+    localStorage.setItem('healthy_doctorid', data[0].user_id);
     $$('#full_name').html(data[0].first_name);
     $$('#email').html( data[0].email);
     $$('#adress').html(data[0].adress);
@@ -364,18 +363,52 @@ function goToSpecialist(id) {
 }
 
 myApp.onPageInit('afspraak', function(page){
-  var today = new Date();
-  var weekLater = new Date().setDate(today.getDate() + 7);
+  console.log('afspraak init');
+
+  var today = new Date(), period = null,
+  weekLater = new Date().setDate(today.getDate() + 7),
    
-  var calendarDisabled = myApp.calendar({
+  calendarDisabled = myApp.calendar({
       input: '#calendar-disabled',
-      dateFormat: 'M dd yyyy',
+      dateFormat: 'yyyy/mm/dd',
       disabled: {
         from: today,
         to: weekLater
       }
   });
 });
+  /* Set periode AM or PM */
+  $$('#am').click(function() {
+    $$(this).attr('class', 'button bg-teal color-white');
+    $$('#pm').attr('class', 'button bg-white color-teal');
+    period = 'am';
+  });
+
+  $$('#pm').click(function() {
+    $$(this).attr('class', 'button bg-teal color-white');
+    $$('#am').attr('class', 'button bg-white color-teal');
+    period = 'pm';
+  });
+  /* End period */
+
+  $$('#add_appointment').click(function() {
+
+    var user_id = localStorage.getItem('healthy_userid'),
+    doctor_id = localStorage.getItem('healthy_doctorid'),
+    date = $$('#calendar-disabled').val()
+    period = period;
+    $$.post('http://gocodeops.com/healthy_do/api/index.php/pending_appointments/add', 
+      {
+        user_id: user_id,
+        doctor_id: doctor_id,
+        date: date,
+        period: period
+      }, function(data) {
+        console.log(data);
+    });
+
+  });
+
 
 myApp.onPageInit('afsprakenverzoek', function(page){
 
@@ -396,3 +429,4 @@ myApp.onPageInit('afsprakenverzoek', function(page){
   });
 
 });
+
