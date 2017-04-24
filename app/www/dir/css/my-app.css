@@ -429,3 +429,11 @@ a {
 	font-size: 15px;
     text-align: center;
 }
+.verzoek_accept{
+	background: #edfbf6;
+    color: #32d296;
+}
+.verzoek_weigeren{
+	background: #fef4f6;
+    color: #f0506e;
+}

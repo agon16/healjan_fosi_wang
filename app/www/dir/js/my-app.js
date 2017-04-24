@@ -376,3 +376,23 @@ myApp.onPageInit('afspraak', function(page){
       }
   });
 });
+
+myApp.onPageInit('afsprakenverzoek', function(page){
+
+  $$("#accept_knop").click(function(){
+    $$(".verzoek_open").addClass("verzoek_accept");
+
+  });
+    $$("#accept_knop").click(function(){
+    $$("#knoppen_verzoek").hide();
+  });
+
+    $$("#cancel_knop").click(function(){
+    $$(".verzoek_open").addClass("verzoek_weigeren");
+
+  });
+    $$("#cancel_knop").click(function(){
+    $$("#knoppen_verzoek").hide();
+  });
+
+});
