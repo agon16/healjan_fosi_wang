@@ -9,6 +9,9 @@ body{
 .m-l-30{
 	margin-left: 30px !important;
 }
+.m-l-70{
+	margin-left: 70px !important;
+}
 .m-t-10{
 	margin-top: 10px !important;
 }
@@ -23,6 +26,9 @@ body{
 }
 .m-b-20{
 	margin-bottom: 20px !important;
+}
+.p-t-0{
+	padding-top: 0px !important;
 }
 .text-center{
 	text-align: center !important;
@@ -436,4 +442,27 @@ a {
 .verzoek_weigeren{
 	background: #fef4f6;
     color: #f0506e;
+}
+.picker-modal .picker-header {
+    background: #009688;
+}
+.navbar, .subnavbar, .toolbar {
+    background: #009688;
+}
+.picker-calendar-day.picker-calendar-day-today span {
+    color: #009688;
+}
+.button {
+    color: #009688
+}
+.afspraak_badge{
+	padding: 5px 12px !important;
+	background-color: #32ab9f;
+	border-radius: 100%;
+	margin-right: 16px;
+}
+.link_new{
+	text-align: center;
+    margin: 20px;
+    color: #009688;
 }
