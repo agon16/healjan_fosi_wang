@@ -37,7 +37,7 @@ myApp.onPageInit('home', function (page) {
   L.tileLayer('dir/tiles/{z0}/{x0}/{x1}/{y0}/{y1}.png').addTo(map); //gMapCatcher
   L.tileLayer('dir/tiles/{z}/{x}/{y}.png').addTo(map);
 
-  $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/speclialist/get", function(data) {
+  $$.getJSON("http://testtmil.sr/healthy_do/api/index.php/specialists/get", function(data) {
     console.log(data);
     $$.each(data, function(i, value) {
       var greenIcon = L.icon({
@@ -53,7 +53,7 @@ myApp.onPageInit('home', function (page) {
 
       // Load local tiles
       L.marker([ data[i].latitude, data[i].longitude], {icon: greenIcon} ).addTo(map)
-           .bindPopup(data[i].first_name+" "+data[i].last_name+" <div align='center'><br><button class='button button-round active' onclick='goToSpecialist(\""+data[i].user_id+"\")'>Details</button></div>");
+           .bindPopup(data[i].firstname+" "+data[i].lastname+" <div align='center'><br><button class='button button-round active' onclick='goToSpecialist(\""+data[i].id+"\")'>Details</button></div>");
     });
   });  
 
@@ -99,7 +99,7 @@ myApp.onPageAfterAnimation('account', function (page) {
 
   // agon
   function getAccount(user_id){
-    $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/users/get/"+user_id, function(data){
+    $$.getJSON("http://testtmil.sr/healthy_do/api/index.php/users/patients/get/"+user_id, function(data){
       
       $$.each(data, function(i, value){
         $$("#voornaam").val(value.first_name);
@@ -111,7 +111,7 @@ myApp.onPageAfterAnimation('account', function (page) {
   };
 
   if (localStorage.getItem('healthy_userid') != undefined) {
-    user_id = localStorage.getItem('healthy_userid')
+    user_id = localStorage.getItem('healthy_userid');
     getAccount(user_id); // Get user details
     $$('.white-overlay').remove();
   } else {
@@ -183,13 +183,13 @@ myApp.onPageInit('login', function (page) {
 
     var formData = myApp.formToJSON('#login-form');
 
-    $$.post("http://gocodeops.com/healthy_do/api/index.php/login", {phone: formData.phone, password: formData.password}, function(data){
+    $$.post("http://testtmil.sr/healthy_do/api/index.php/login", {phone: formData.phone, password: formData.password}, function(data){
       data = JSON.parse(data);
 
       if(data.result == 'false') {
         myApp.alert("Mobielnummer of password incorrect!");
       } else if(data[0].id) {
-        localStorage.setItem('healthy_userid', data[0].id);
+        localStorage.setItem('healthy_userid', data[0].patient_id);
         mainView.router.loadPage('views/account.html');
       }
     });
@@ -276,7 +276,7 @@ myApp.onPageInit('aanmelden', function (page) {
 myApp.onPageInit('symptomen', function (page) {
   console.log('symptomen init');
 
-  $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/sickness/get", function(data){
+  $$.getJSON("http://testtmil.sr/healthy_do/api/index.php/sickness/get", function(data){
     console.log(data);
     $$.each(data, function(i, value){
       var symptoom = '<li>'+
@@ -303,7 +303,7 @@ myApp.onPageInit('symptoom_detail', function (page) {
 
   console.log(symptoom_id);
 
-  $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/sickness/get/"+symptoom_id, function(data){
+  $$.getJSON("http://testtmil.sr/healthy_do/api/index.php/sickness/get/"+symptoom_id, function(data){
     console.log(data);
 
     $$('#symptoom_detail_name').text(data[0].name);
@@ -318,7 +318,7 @@ myApp.onPageInit('symptoom_detail', function (page) {
 
 myApp.onPageInit('faq', function (page) {
   console.log('faq init');
-$$.getJSON("http://gocodeops.com/healthy_do/api/index.php/faq/get", function(data){
+$$.getJSON("http://testtmil.sr/healthy_do/api/index.php/faq/get", function(data){
     console.log(data);
     $$.each(data, function(i, value){
       // console.log(value.first_name); 
@@ -344,10 +344,10 @@ myApp.onPageInit('specialisten', function (page) {
   console.log('specialisten');
   var user_id = page.query.id;
 
-  $$.getJSON("http://gocodeops.com/healthy_do/api/index.php/speclialist/get/"+user_id, function(data) {
+  $$.getJSON("http://testtmil.sr/healthy_do/api/index.php/specialists/get/"+user_id, function(data) {
     console.log(data);
 
-    localStorage.setItem('healthy_doctorid', data[0].user_id);
+    localStorage.setItem('healthy_specialistid', data[0].user_id);
     $$('#full_name').html(data[0].first_name);
     $$('#email').html( data[0].email);
     $$('#adress').html(data[0].adress);
@@ -362,7 +362,7 @@ function goToSpecialist(id) {
   mainView.router.loadPage('views/specialisten.html?id='+id);
 }
 
-myApp.onPageInit('afspraak', function(page){
+myApp.onPageInit('afspraak', function(page) {
   console.log('afspraak init');
 
   var today = new Date(), period = null,
@@ -370,21 +370,23 @@ myApp.onPageInit('afspraak', function(page){
    
   calendarDisabled = myApp.calendar({
       input: '#calendar-disabled',
-      dateFormat: 'yyyy/mm/dd',
+      dateFormat: 'yyyy-mm-dd',
       disabled: {
         from: today,
         to: weekLater
       }
   });
-});
+
   /* Set periode AM or PM */
   $$('#am').click(function() {
+    console.log("Period clicked");
     $$(this).attr('class', 'button bg-teal color-white');
     $$('#pm').attr('class', 'button bg-white color-teal');
     period = 'am';
   });
 
   $$('#pm').click(function() {
+    console.log("Period clicked");
     $$(this).attr('class', 'button bg-teal color-white');
     $$('#am').attr('class', 'button bg-white color-teal');
     period = 'pm';
@@ -392,41 +394,153 @@ myApp.onPageInit('afspraak', function(page){
   /* End period */
 
   $$('#add_appointment').click(function() {
-
+    
     var user_id = localStorage.getItem('healthy_userid'),
-    doctor_id = localStorage.getItem('healthy_doctorid'),
-    date = $$('#calendar-disabled').val()
+    specialist_id = localStorage.getItem('healthy_specialistid'),
+    date = $$('#calendar-disabled').val(),
     period = period;
-    $$.post('http://gocodeops.com/healthy_do/api/index.php/pending_appointments/add', 
+    $$.post('http://testtmil.sr/healthy_do/api/index.php/appointments/add', 
       {
-        user_id: user_id,
-        doctor_id: doctor_id,
+        specialist_id: specialist_id,
+        patient_id: user_id,
         date: date,
         period: period
       }, function(data) {
-        console.log(data);
+        data = JSON.parse(data);
+        if(data.result == 'success') {
+          myApp.alert("Afspraak gemaakt");
+        } else if(data.result == 'failed') {
+          myApp.alert("Fout opgetreden!");
+        }
     });
-
-  });
-
-
-myApp.onPageInit('afsprakenverzoek', function(page){
-
-  $$("#accept_knop").click(function(){
-    $$(".verzoek_open").addClass("verzoek_accept");
-
-  });
-    $$("#accept_knop").click(function(){
-    $$("#knoppen_verzoek").hide();
-  });
-
-    $$("#cancel_knop").click(function(){
-    $$(".verzoek_open").addClass("verzoek_weigeren");
-
-  });
-    $$("#cancel_knop").click(function(){
-    $$("#knoppen_verzoek").hide();
+    
   });
 
 });
 
+
+myApp.onPageInit('afsprakenverzoek', function(page) {
+
+  var user_id = localStorage.getItem('healthy_userid');
+
+  var load_appointments = function() {
+    myApp.showIndicator();
+
+    $$.getJSON('http://testtmil.sr/healthy_do/api/index.php/appointments/get/patient/'+user_id, function(data) {
+
+      $$('#appointments').html(''); // Clear page
+    
+      $$.each(data, function(i, value) {
+
+        console.log(data[i].state);
+        var name = data[i].firstname+' '+data[i].lastname,
+        id = data[i].id;
+
+        if(data[i].state == 'waiting') {
+
+          switch(data[i].fully_booked) {
+            case '0':
+              var content = '<div class="card verzoek_open">'+
+                '<div class="card-header"><div class="links"><i class="ion-eye color-blue"></i></div>Jonathan</div>'+
+                '<div class="card-content">'+
+                  '<div class="card-content-inner">Beste Emanuel, U had een verzoek gedaan om een afspraak te maken naar de specialist '+name+' te gaan op 2017-04-30 16:00 komen voor uw behandeling.</div>'+
+                '</div>'+
+                '<div class="row card-content-inner" id="knoppen_verzoek">'+
+                  '<div class="col-50">'+
+                    '<a href="#" id="accept_knop" onclick="appointment_respond(\''+id+'\', 0);" class="button button-big bg-teal color-white">Accept</a>'+
+                  '</div>'+
+                  '<div class="col-50">'+
+                    '<a href="#" id="cancel_knop" onclick="appointment_respond(\''+id+'\', 1);" class="button button-big bg-red color-white">Cancel</a>'+
+                  '</div>'+
+                '</div>'+
+              '</div>';
+              break;
+
+            case '1':
+              var content = '<div class="card verzoek_open">'+
+                '<div class="card-header"><div class="links"><i class="ion-eye color-blue"></i></div>Jonathan</div>'+
+                '<div class="card-content">'+
+                  '<div class="card-content-inner">Beste Emanuel, U had een verzoek gedaan om een afspraak te maken naar de specialist '+name+' te gaan. Uw verzoek kan niet geaccepteerd worden omdat het al volggeboekt is maar als u wilt kunt u dan op 2017-04-30 16:00 komen voor uw behandeling.</div>'+
+                '</div>'+
+                '<div class="row card-content-inner" id="knoppen_verzoek">'+
+                  '<div class="col-50">'+
+                    '<a href="#" id="accept_knop" onclick="appointment_respond(\''+id+'\', 0);" class="button button-big bg-teal color-white">Accept</a>'+
+                  '</div>'+
+                  '<div class="col-50">'+
+                    '<a href="#" id="cancel_knop" onclick="appointment_respond(\''+id+'\', 1);" class="button button-big bg-red color-white">Cancel</a>'+
+                  '</div>'+
+                '</div>'+
+              '</div>';
+              break;
+          }
+
+        } else if(data[i].state == 'accepted') {
+          var content = '<div class="card verzoek_accept">'+
+            '<div class="card-header"><div class="links"><i class="ion-eye color-blue"></i></div>Jonathan</div>'+
+            '<div class="card-content">'+
+              '<div class="card-content-inner">Beste Emanuel, uw verzoek is geaccepteerd en uw afspraak is 25-4-2017 11:45AM</div>'+
+            '</div>'+
+          '</div>';
+        } else if(data[i].state == 'cancelled') {
+          var content = '<div class="card verzoek_weigeren">'+
+            '<div class="card-header"><div class="links"><i class="ion-eye color-blue"></i></div>Jonathan</div>'+
+            '<div class="card-content">'+
+              '<div class="card-content-inner">Beste Emanuel, uw verzoek is geannuleerd</div>'+
+            '</div>'+
+          '</div>';
+        }
+
+        $$('#appointments').append(content);
+
+      });
+      myApp.hideIndicator();
+      myApp.pullToRefreshDone();
+    });
+  };
+
+  load_appointments();
+
+  // $$("#accept_knop").click(function() { // Accept button
+  //   $$(".verzoek_open").addClass("verzoek_accept");
+  //   $$("#knoppen_verzoek").hide();
+  // });
+
+  // $$("#cancel_knop").click(function() { // Cancel button
+  //   $$(".verzoek_open").addClass("verzoek_weigeren");
+  //   $$("#knoppen_verzoek").hide();
+  // });
+
+  var ptrContent = $$('.pull-to-refresh-content');
+ 
+  // Add 'refresh' listener on it
+  ptrContent.on('refresh', function (e) {
+    load_appointments();
+  });
+
+});
+
+function appointment_respond(id, cancelled) {
+  // Respond to an appointment
+  $$.post('http://testtmil.sr/healthy_do/api/index.php/appointments/respond', 
+      {
+        id: id,
+        cancelled: cancelled,
+        fully_booked: 0,
+        user_type: 'patient'
+      }, function(data) {
+        data = JSON.parse(data);
+        if(data.result == 'success') {
+          
+          if(data.cancelled == '1') {
+            myApp.alert("Afspraak geannulleerd");
+          } else {
+            myApp.alert("Afspraak gemaakt");
+          }
+          mainView.router.loadPage('views/home.html');
+
+        } else if(data.result == 'failed') {
+          myApp.alert("Fout opgetreden!");
+        }
+
+    });
+}
