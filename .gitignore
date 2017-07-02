@@ -15,5 +15,5 @@ TODO
 test.html
 sftp-config.json
 
-backend/**
+backend/*
 !backend/cms

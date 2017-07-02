@@ -1,0 +1,100 @@
+/*	OVERRIDES*/
+a{
+	color: #00c853;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+	background-color: #00c853;
+	border-color: #00c853;
+}
+.nav-tabs-custom>.nav-tabs>li.active{
+	border-color: #00c853;
+}
+div.dataTables_info, div.dataTables_length label{
+	padding-left: 8px;
+	font-size: 12px;
+	color: #9e9e9e;
+}
+select[name="dataTable_length"]{
+	margin: 0 5px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+#dataTable_filter input[type="search"]{
+	border: none;
+    border-bottom: 1px solid #ccc;
+}
+#dataTable_filter input[type="search"]:focus{
+	border-color: #00c853;
+}
+/*	OVERRIDES*/
+
+/*	CUSTOMS*/
+.user-panel .image{
+	width: 40px;
+	height: 40px;
+	border-radius: 40px;
+	overflow: hidden;
+}
+.user-panel .image img{
+	object-fit: cover;
+	width: 40px;
+	height: 40px;
+}
+.user-menu .user-image{
+	border-radius: 25px;
+	overflow: hidden;
+}
+.user-menu .user-image img{
+	object-fit: cover;
+	width: 25px;
+	height: 25px;
+}
+.user-header .user-header-image{
+	z-index: 5;
+    height: 90px;
+    width: 90px;
+    border: 3px solid #00c853;
+	border-radius: 90px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+.user-header .user-header-image img{
+	object-fit: cover;
+	width: 90px;
+	height: 90px;
+}
+.modal-content{
+	border-radius: 4px;
+}
+.table-image img{
+	height: 34px;
+	width: auto;
+	max-height: 34px;
+}
+.modal-image{
+	width: 100%;
+	height: 200px;
+}
+.modal-image img{
+	height: 200px;
+	width: 100%;
+	object-fit: contain;
+}
+.qq-upload-button{
+	margin: 1em 0;
+	width: 100%;
+	border-radius: 4px;
+	background-color: #00c853;
+}
+.qq-upload-button-hover{
+	background-color: #00e676;
+}
+/*	CUSTOMS*/
+
+
+/*	HELPERS*/
+.mb-20{
+	margin-bottom: 20px;
+}
+/*	HELPERS*/
