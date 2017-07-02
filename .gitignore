@@ -16,3 +16,4 @@ test.html
 sftp-config.json
 
 backend/**
+!backend/cms
