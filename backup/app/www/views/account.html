@@ -1,0 +1,106 @@
+<div class="pages">
+  <div data-page="account" class="page navbar-fixed theme-teal">
+    
+    <div class="white-overlay"></div>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="#" class="back link">
+            <i class="icon ion-chevron-left"></i>
+           </a>
+        </div>
+        <div class="center">Account</div>
+        <div class="right">
+        </div>
+      </div>
+    </div>
+    
+    <div class="page-content">
+      <form id="form-account">
+        <div class="list-block">
+          <ul>
+            <!-- Text inputs -->
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-input">
+                    <input type="text" id="voornaam" name="first_name" placeholder="Voornaam">
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-input">
+                    <input type="text" id="achternaam" name="last_name" placeholder="Achternaam">
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-input">
+                    <select id="gender" name="gender">
+                      <option value="m">Man</option>
+                      <option value="v">Vrouw</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-input">
+                    <input type="number" id="telefoon" name="phone" placeholder="Mobiel">
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Verander wachtwoord</div>
+                  <div class="item-input">
+                    <label class="label-switch">
+                      <input type="checkbox">
+                      <div class="checkbox"></div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <div id="beveiliging">
+              <li>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-input">
+                      <input type="password" id="oud_wachtwoord" name="password" placeholder="Oud wachtwoord">
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-input">
+                      <input type="password" name="conf_password" placeholder="Nieuw wachtwoord">
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </div>
+          </ul>
+        </div>
+        <div class="content-block">
+          <!-- <p><button href="#" type="submit" class="button active bg-teal color-white">Wijzig</button></p> -->
+          <input type="submit" value="Wijzig" class="button active bg-teal color-white" name="submit">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
