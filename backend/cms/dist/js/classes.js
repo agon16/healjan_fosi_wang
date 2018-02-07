@@ -134,7 +134,7 @@ var app = {
 		app.updateUser(user);
 	},
 
-	updateUser: function(user_object){
+	updateUser: function(user_object) {
 		// console.log(user_object);
 		
 		var name = user_object.first_name + ' '+ user_object.last_name;

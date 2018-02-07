@@ -37,6 +37,10 @@ myApp.onPageInit('home', function(page) {
   L.tileLayer('dir/tiles/{z0}/{x0}/{x1}/{y0}/{y1}.png').addTo(map); //gMapCatcher
   L.tileLayer('dir/tiles/{z}/{x}/{y}.png').addTo(map);
 
+  $$('#map').click(function() {
+    map.panTo(L.latLng(50, 30));
+  });
+
   $$.getJSON("../../backend/api/index.php/specialists/get", function(data) {
     console.log(data);
     $$.each(data, function(i, value) {
